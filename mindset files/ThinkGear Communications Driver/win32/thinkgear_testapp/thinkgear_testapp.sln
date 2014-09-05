@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "thinkgear_testapp", "thinkgear_testapp\thinkgear_testapp.vcxproj", "{2FD1785A-8D6C-42F5-8D72-597BF58306BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D982309C-1032-4418-8B76-681334CB44CE}"
+	ProjectSection(SolutionItems) = preProject
+		thinkgear.dll = thinkgear.dll
+		thinkgear.h = thinkgear.h
+		thinkgear.lib = thinkgear.lib
+		thinkgear_testapp.c = thinkgear_testapp.c
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FD1785A-8D6C-42F5-8D72-597BF58306BC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2FD1785A-8D6C-42F5-8D72-597BF58306BC}.Debug|Win32.Build.0 = Debug|Win32
+		{2FD1785A-8D6C-42F5-8D72-597BF58306BC}.Release|Win32.ActiveCfg = Release|Win32
+		{2FD1785A-8D6C-42F5-8D72-597BF58306BC}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

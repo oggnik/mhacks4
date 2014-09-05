@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "thinkgear_testapp", "thinkgear_testapp.exe", "{C98AD50A-49BC-4370-B669-2AB466B3950A}"
+	ProjectSection(DebuggerProjectSystem) = preProject
+		PortSupplier = 00000000-0000-0000-0000-000000000000
+		Executable = C:\Users\Matthew\Downloads\mindset files\ThinkGear Communications Driver\win32\thinkgear_testapp.exe
+		RemoteMachine = MATTHEW-TABLET
+		StartingDirectory = C:\Users\Matthew\Downloads\mindset files\ThinkGear Communications Driver\win32
+		Environment = Default
+		LaunchingEngine = 00000000-0000-0000-0000-000000000000
+		LaunchSQLEngine = No
+		AttachLaunchAction = No
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C98AD50A-49BC-4370-B669-2AB466B3950A}.Debug|x86.ActiveCfg = Debug|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
