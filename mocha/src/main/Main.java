@@ -26,13 +26,14 @@ public class Main {
 				try {
 					File stageFile = new File("../new/app/app/state.txt");
 					Scanner input = new Scanner(stageFile);
-					int state = input.nextInt();
-					if (state == 0) {
+					String state = input.next();
+					if (state.equals("0")) {
 						wait = false;
 					}
 					input.close();
 				} catch (Exception e) {
 					System.err.println(e);
+					e.printStackTrace();
 				}
 			}
 			System.out.println("Reading");
@@ -95,6 +96,7 @@ public class Main {
 				System.out.println("Wrote a 1");
 			} catch (Exception e) {
 				System.err.println("Error writing a 1: " + e);
+				e.printStackTrace();
 			}
 		}
 	}
