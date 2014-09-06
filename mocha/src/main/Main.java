@@ -1,9 +1,10 @@
 package main;
 
-import com.neurosky.thinkgear.ThinkGear;
-
 import matcher.PatternMatcher;
+import model.SensorValue;
 import view.View;
+
+import com.neurosky.thinkgear.ThinkGear;
 
 public class Main {
 	static {
@@ -49,6 +50,10 @@ public class Main {
 			 * Fill the SensorValue with the data
 			 * Pass the SensorValue to the view and the patternMatcher
 			 */
+			ThinkGear.ReadPackets(connectionID, 1);
+			SensorValue sensorValue = new SensorValue();
+			
+			sensorValue.alpha1 = ThinkGear.GetValue(connectionID, ThinkGear.DATA_ALPHA1);
 		}
 	}
 }

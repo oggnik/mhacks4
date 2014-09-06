@@ -13,17 +13,17 @@ public class SensorValue {
 	 * All these values should be filled upon querying packet data.
 	 */
 	
-	public int battery;
-	public int poorSignal;
-	public int attention;
-	public int meditation;
-	public int raw;
-	public int delta;
-	public int theta;
-	public int alpha1;
-	public int alpha2;
-	public int beta1;
-	public int beta2;
-	public int gamma1;
-	public int gamma2;
+	public double battery;
+	public double poorSignal;
+	public double attention;
+	public double meditation;
+	public double raw;
+	public double delta;
+	public double theta;
+	public double alpha1;
+	public double alpha2;
+	public double beta1;
+	public double beta2;
+	public double gamma1;
+	public double gamma2;
 }
