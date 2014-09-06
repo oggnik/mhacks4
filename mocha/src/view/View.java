@@ -95,20 +95,20 @@ public class View {
 	public void update(SensorValue sensorValue) {
 		graphPanel.updateValues(sensorValue);
 		valuePanel.updateValues(sensorValue);
-		System.out.println(sensorValue.alpha1);
-		System.out.println(sensorValue.alpha2);
-		System.out.println(sensorValue.attention);
-		System.out.println(sensorValue.battery);
-		System.out.println(sensorValue.beta1);
-		System.out.println(sensorValue.beta2);
-		System.out.println(sensorValue.delta);
-		System.out.println(sensorValue.gamma1);
-		System.out.println(sensorValue.gamma2);
-		System.out.println(sensorValue.meditation);
-		System.out.println(sensorValue.poorSignal);
-		System.out.println(sensorValue.raw);
-		System.out.println(sensorValue.theta);
-		System.out.println("-----------------\n");
+//		System.out.println(sensorValue.alpha1);
+//		System.out.println(sensorValue.alpha2);
+//		System.out.println(sensorValue.attention);
+//		System.out.println(sensorValue.battery);
+//		System.out.println(sensorValue.beta1);
+//		System.out.println(sensorValue.beta2);
+//		System.out.println(sensorValue.delta);
+//		System.out.println(sensorValue.gamma1);
+//		System.out.println(sensorValue.gamma2);
+//		System.out.println(sensorValue.meditation);
+//		System.out.println(sensorValue.poorSignal);
+//		System.out.println(sensorValue.raw);
+//		System.out.println(sensorValue.theta);
+//		System.out.println("-----------------\n");
 	}
 	
 	/**

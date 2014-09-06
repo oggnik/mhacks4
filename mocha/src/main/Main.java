@@ -26,8 +26,8 @@ public class Main {
 				try {
 					File stageFile = new File("../new/app/app/state.txt");
 					Scanner input = new Scanner(stageFile);
-					int stage = input.nextInt();
-					if (stage == 0) {
+					int state = input.nextInt();
+					if (state == 0) {
 						wait = false;
 					}
 					input.close();
@@ -35,6 +35,7 @@ public class Main {
 					System.err.println(e);
 				}
 			}
+			System.out.println("Reading");
 			
 			File alpha1File = new File("../new/app/app/alpha1.txt");
 			Scanner alpha1In = new Scanner(alpha1File);
@@ -85,12 +86,13 @@ public class Main {
 					patternMatcher.update(sensorValue);
 				}
 			}
-			
+			System.out.println("Done reading");
 			try {
 				File stageFile = new File("stage.txt");
 				PrintWriter stageOut = new PrintWriter(stageFile);
 				stageOut.print(1);
 				stageOut.close();
+				System.out.println("Wrote a 1");
 			} catch (Exception e) {
 				System.err.println("Error writing a 1: " + e);
 			}
