@@ -1,11 +1,11 @@
 package matcher;
 import java.util.ArrayList;
-import model.Pattern;
+import model.*;
 public class ColorPattern {
-	ArrayList patternArray;
+	ArrayList <Pattern> patternArray;
 	int count;
 	public ColorPattern(){
-		patternArray = new ArrayList();
+		patternArray = new ArrayList<Pattern>();
 		/**
 		 * Get pattern for each color and add patterns to patternArray
 		 */
