@@ -50,23 +50,25 @@ public class GraphPanel extends JPanel {
 			int x = (int) (i * xScale);
 			int lastX = (int) ((i - 1) * xScale);
 			
-			g2.setColor(View.ALPHA1_COLOR);
-			drawLine(lastX, last.alpha1, x, value.alpha1, yScale, g2);
-			g2.setColor(View.ALPHA2_COLOR);
-			drawLine(lastX, last.alpha2, x, value.alpha2, yScale, g2);
-			g2.setColor(View.BETA1_COLOR);
-			drawLine(lastX, last.beta1, x, value.beta1, yScale, g2);
-			g2.setColor(View.BETA2_COLOR);
-			drawLine(lastX, last.beta2, x, value.beta2, yScale, g2);
-			g2.setColor(View.DELTA_COLOR);
-			drawLine(lastX, last.delta, x, value.delta, yScale, g2);
-			g2.setColor(View.GAMMA1_COLOR);
-			drawLine(lastX, last.gamma1, x, value.gamma1, yScale, g2);
-			g2.setColor(View.GAMMA2_COLOR);
-			drawLine(lastX, last.gamma2, x, value.gamma2, yScale, g2);
-			g2.setColor(View.THETA_COLOR);
-			drawLine(lastX, last.theta, x, value.theta, yScale, g2);
-			g2.setColor(Color.BLACK);
+			if (last != null && value != null) {
+				g2.setColor(View.ALPHA1_COLOR);
+				drawLine(lastX, last.alpha1, x, value.alpha1, yScale, g2);
+				g2.setColor(View.ALPHA2_COLOR);
+				drawLine(lastX, last.alpha2, x, value.alpha2, yScale, g2);
+				g2.setColor(View.BETA1_COLOR);
+				drawLine(lastX, last.beta1, x, value.beta1, yScale, g2);
+				g2.setColor(View.BETA2_COLOR);
+				drawLine(lastX, last.beta2, x, value.beta2, yScale, g2);
+				g2.setColor(View.DELTA_COLOR);
+				drawLine(lastX, last.delta, x, value.delta, yScale, g2);
+				g2.setColor(View.GAMMA1_COLOR);
+				drawLine(lastX, last.gamma1, x, value.gamma1, yScale, g2);
+				g2.setColor(View.GAMMA2_COLOR);
+				drawLine(lastX, last.gamma2, x, value.gamma2, yScale, g2);
+				g2.setColor(View.THETA_COLOR);
+				drawLine(lastX, last.theta, x, value.theta, yScale, g2);
+				g2.setColor(Color.BLACK);
+			}
 			
 			last = value;
 		}
