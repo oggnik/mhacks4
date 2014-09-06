@@ -4,7 +4,7 @@
 
 #include "thinkgear.h"
 
-#define FORMAT "%i\n"
+#define FORMAT "%f\n"
 /**
  * Prompts and waits for the user to press ENTER.
  */
@@ -134,7 +134,7 @@ main( void ) {
                     /* Get the current time as a string */
                     currTime = time( NULL );
         			currTimeStr = ctime( &currTime );
-					fprintf(raw,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_RAW));
+					fprintf(raw,FORMAT,TG_GetValue(connectionId,TG_DATA_RAW));
 					fprintf(alpha1,FORMAT,TG_GetValue(connectionId,TG_DATA_ALPHA1));
 					fprintf(alpha2,FORMAT,TG_GetValue(connectionId,TG_DATA_ALPHA2));
 					fprintf(beta1,FORMAT,TG_GetValue(connectionId,TG_DATA_BETA1));
