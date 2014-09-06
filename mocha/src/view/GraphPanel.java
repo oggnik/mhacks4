@@ -15,7 +15,7 @@ public class GraphPanel extends JPanel {
 	public static final int GRAPH_HEIGHT = 500;
 	public static final int NUM_VALUES = 500;
 	
-	// Values will hold 100 values
+	// Values will hold NUM_VALUES values
 	private ArrayList<SensorValue> values;
 	
 	public GraphPanel() {
