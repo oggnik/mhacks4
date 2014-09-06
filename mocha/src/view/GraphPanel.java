@@ -36,6 +36,9 @@ public class GraphPanel extends JPanel {
 		g2.setColor(Color.BLACK);
 		g2.fillRect(0, 0, GRAPH_WIDTH, GRAPH_HEIGHT);
 		
+		if (values.isEmpty())
+			return;
+		
 		double maxValue = getMaxValue();
 		double xScale = ((double) GRAPH_WIDTH) / NUM_VALUES;
 		double yScale = GRAPH_HEIGHT / maxValue;
