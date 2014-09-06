@@ -23,7 +23,7 @@ public class Main {
 			
 			boolean wait = true;
 			while (wait) {
-				File stageFile = new File("stage.txt");
+				File stageFile = new File("../new/app/app/stage.txt");
 				Scanner input = new Scanner(stageFile);
 				int stage = input.nextInt();
 				if (stage == 0) {
@@ -32,21 +32,21 @@ public class Main {
 				input.close();
 			}
 			
-			File alpha1File = new File("alpha1.txt");
+			File alpha1File = new File("../new/app/app/alpha1.txt");
 			Scanner alpha1In = new Scanner(alpha1File);
-			File alpha2File = new File("alpha2.txt");
+			File alpha2File = new File("../new/app/app/alpha2.txt");
 			Scanner alpha2In = new Scanner(alpha2File);
-			File beta1File = new File("beta1.txt");
+			File beta1File = new File("../new/app/app/beta1.txt");
 			Scanner beta1In = new Scanner(beta1File);
-			File beta2File = new File("beta2.txt");
+			File beta2File = new File("../new/app/app/beta2.txt");
 			Scanner beta2In = new Scanner(beta2File);
-			File deltaFile = new File("delta.txt");
+			File deltaFile = new File("../new/app/app/delta.txt");
 			Scanner deltaIn = new Scanner(deltaFile);
-			File gamma1File = new File("gamma1.txt");
+			File gamma1File = new File("../new/app/app/gamma1.txt");
 			Scanner gamma1In = new Scanner(gamma1File);
-			File gamma2File = new File("gamma2.txt");
+			File gamma2File = new File("../new/app/app/gamma2.txt");
 			Scanner gamma2In = new Scanner(gamma2File);
-			File thetaFile = new File("theta.txt");
+			File thetaFile = new File("../new/app/app/theta.txt");
 			Scanner thetaIn = new Scanner(thetaFile);
 			
 			while (alpha1In.hasNextDouble()) {
