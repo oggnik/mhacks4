@@ -2,6 +2,7 @@ package main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 import matcher.PatternMatcher;
@@ -15,31 +16,40 @@ public class Main {
 		View view = new View();
 		PatternMatcher patternMatcher = new PatternMatcher();
 		
-		
-		File alpha1File = new File("alpha1.txt");
-		Scanner alpha1In = new Scanner(alpha1File);
-		File alpha2File = new File("alpha2.txt");
-		Scanner alpha2In = new Scanner(alpha2File);
-		File beta1File = new File("beta1.txt");
-		Scanner beta1In = new Scanner(beta1File);
-		File beta2File = new File("beta2.txt");
-		Scanner beta2In = new Scanner(beta2File);
-		File deltaFile = new File("delta.txt");
-		Scanner deltaIn = new Scanner(deltaFile);
-		File gamma1File = new File("gamma1.txt");
-		Scanner gamma1In = new Scanner(gamma1File);
-		File gamma2File = new File("gamma2.txt");
-		Scanner gamma2In = new Scanner(gamma2File);
-		File thetaFile = new File("theta.txt");
-		Scanner thetaIn = new Scanner(thetaFile);
-		
-		
 		while (true) {
 			/*
-			 * Do magic calibration stuff
+			 * Do magic calibration stuff?
 			 */
 			
-			while (true) {
+			boolean wait = true;
+			while (wait) {
+				File stageFile = new File("stage.txt");
+				Scanner input = new Scanner(stageFile);
+				int stage = input.nextInt();
+				if (stage == 0) {
+					wait = false;
+				}
+				input.close();
+			}
+			
+			File alpha1File = new File("alpha1.txt");
+			Scanner alpha1In = new Scanner(alpha1File);
+			File alpha2File = new File("alpha2.txt");
+			Scanner alpha2In = new Scanner(alpha2File);
+			File beta1File = new File("beta1.txt");
+			Scanner beta1In = new Scanner(beta1File);
+			File beta2File = new File("beta2.txt");
+			Scanner beta2In = new Scanner(beta2File);
+			File deltaFile = new File("delta.txt");
+			Scanner deltaIn = new Scanner(deltaFile);
+			File gamma1File = new File("gamma1.txt");
+			Scanner gamma1In = new Scanner(gamma1File);
+			File gamma2File = new File("gamma2.txt");
+			Scanner gamma2In = new Scanner(gamma2File);
+			File thetaFile = new File("theta.txt");
+			Scanner thetaIn = new Scanner(thetaFile);
+			
+			while (alpha1In.hasNextDouble()) {
 				/*
 				 * Call ReadPacket to get a new packet
 				 * Create a SensorValue to hold the information
@@ -65,15 +75,17 @@ public class Main {
 				
 				// Update the view
 				view.update(sensorValue);
-				if (view.getCalibrate()) {
-					break;
-				}
 				
 				// Update the pattern matcher if it should be running
 				if (view.getRunning()) {
 					patternMatcher.update(sensorValue);
 				}
 			}
+			
+			File stageFile = new File("stage.txt");
+			PrintWriter stageOut = new PrintWriter(stageFile);
+			stageOut.print(1);
+			stageOut.close();
 		}
 	}
 }
