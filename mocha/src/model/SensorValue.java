@@ -12,7 +12,6 @@ public class SensorValue {
 	/*
 	 * All these values should be filled upon querying packet data.
 	 */
-	
 	public double battery;
 	public double poorSignal;
 	public double attention;

@@ -1,6 +1,13 @@
 package view;
 
-import com.neurosky.thinkgear.ThinkGear;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import model.SensorValue;
 
@@ -9,8 +16,75 @@ import model.SensorValue;
  *
  */
 public class View {
+	public static final Color ALPHA1_COLOR = Color.RED;
+	public static final Color ALPHA2_COLOR = Color.RED.brighter();
+	public static final Color BETA1_COLOR = Color.BLUE;
+	public static final Color BETA2_COLOR = Color.BLUE.brighter();
+	public static final Color DELTA_COLOR = Color.CYAN;
+	public static final Color GAMMA1_COLOR = Color.GREEN;
+	public static final Color GAMMA2_COLOR = Color.GREEN.brighter();
+	public static final Color THETA_COLOR = Color.ORANGE;
+	
+	private JFrame frame;
+	private GraphPanel graphPanel;
+	private ValuePanel valuePanel;
+	private boolean calibrate;
+	private boolean running;
+	
 	public View() {
+		frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		calibrate = false;
+		running = false;
 		
+		JPanel content = new JPanel();
+		content.setLayout(new BorderLayout());
+		content.setBackground(Color.BLACK);
+		
+		/*
+		 * Create the buttons
+		 */
+		JPanel buttonPanel = new JPanel();
+		JButton calibrateButton = new JButton("Calibrate");
+		calibrateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Calibrate");
+				calibrate = true;
+				running = false;
+			}
+		});
+		buttonPanel.add(calibrateButton);
+		
+		JButton startButton = new JButton("Start");
+		startButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Start");
+				running = true;
+			}
+		});
+		buttonPanel.add(startButton);
+		
+		JButton stopButton = new JButton("Stop");
+		stopButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Stop");
+				running = false;
+			}
+		});
+		buttonPanel.add(stopButton);
+		
+		buttonPanel.setBackground(Color.BLACK);
+		content.add(buttonPanel, BorderLayout.SOUTH);
+		
+		graphPanel = new GraphPanel();
+		content.add(graphPanel, BorderLayout.CENTER);
+		
+		valuePanel = new ValuePanel();
+		content.add(valuePanel, BorderLayout.EAST);
+		
+		frame.setContentPane(content);
+		frame.pack();
+		frame.setVisible(true);
 	}
 	
 	/**
@@ -19,6 +93,8 @@ public class View {
 	 * @param sensorValue A new SensorValue
 	 */
 	public void update(SensorValue sensorValue) {
+		graphPanel.updateValues(sensorValue);
+		valuePanel.updateValues(sensorValue);
 		System.out.println(sensorValue.alpha1);
 		System.out.println(sensorValue.alpha2);
 		System.out.println(sensorValue.attention);
@@ -33,5 +109,21 @@ public class View {
 		System.out.println(sensorValue.raw);
 		System.out.println(sensorValue.theta);
 		System.out.println("-----------------\n");
+	}
+	
+	/**
+	 * Determine if we should calibrate or not
+	 * @return calibrate
+	 */
+	public boolean getCalibrate() {
+		return calibrate;
+	}
+
+	/**
+	 * Determine if we should be running
+	 * @return
+	 */
+	public boolean getRunning() {
+		return running;
 	}
 }
