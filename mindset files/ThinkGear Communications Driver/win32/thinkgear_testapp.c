@@ -4,6 +4,7 @@
 
 #include "thinkgear.h"
 
+#define FORMAT "%i\n"
 /**
  * Prompts and waits for the user to press ENTER.
  */
@@ -31,6 +32,15 @@ main( void ) {
     time_t startTime    = 0;
     time_t currTime     = 0;
     char  *currTimeStr  = NULL;
+
+	FILE* alpha1;
+	FILE* alpha2;
+	FILE* beta1;
+	FILE* beta2;
+	FILE* delta;
+	FILE* theta;
+	FILE* gamma1;
+	FILE* gamma2;
     
     /* Print driver version number */
     dllVersion = TG_GetDriverVersion();
@@ -68,7 +78,7 @@ main( void ) {
      *       them.  On Mac OS X, COM ports are named like
      *       "/dev/tty.MindSet-DevB-1".
      */
-    comPortName = "\\\\.\\COM5";
+    comPortName = "\\\\.\\COM3";
     errCode = TG_Connect( connectionId,
                          comPortName,
                          TG_BAUD_57600,
@@ -78,12 +88,23 @@ main( void ) {
         wait();
         exit( EXIT_FAILURE );
     }
-    
+   
+
     /* Keep reading ThinkGear Packets from the connection for 5 seconds... */
     secondsToRun = 5;
     startTime = time( NULL );
-    while( difftime(time(NULL), startTime) < secondsToRun ) {
-        
+	while(1){
+		i=0;
+		wait(0.5);
+    while(i<500){// difftime(time(NULL), startTime) < secondsToRun ) {
+        alpha1=fopen("alpha1.txt","w+");
+		alpha2=fopen("alpha2.txt","w+");
+		beta1=fopen("beta1.txt","w+");
+		beta2=fopen("beta2.txt","w+");
+		delta=fopen("delta.txt","w+");
+		theta=fopen("theta.txt","w+");
+		gamma1=fopen("gamma1.txt","w+");
+		gamma2=fopen("gamma2.txt","w+");
         /* Read all currently available Packets, one at a time... */
         do {
             
@@ -99,7 +120,14 @@ main( void ) {
                     /* Get the current time as a string */
                     currTime = time( NULL );
         			currTimeStr = ctime( &currTime );
-                    
+					fprintf(alpha1,FORMAT,TG_GetValue(connectionId,TG_DATA_ALPHA1));
+					fprintf(alpha2,FORMAT,TG_GetValue(connectionId,TG_DATA_ALPHA2));
+					fprintf(beta1,FORMAT,TG_GetValue(connectionId,TG_DATA_BETA1));
+					fprintf(beta2,FORMAT,TG_GetValue(connectionId,TG_DATA_BETA2));
+					fprintf(delta,FORMAT,TG_GetValue(connectionId,TG_DATA_DELTA));
+					fprintf(gamma1,FORMAT,TG_GetValue(connectionId,TG_DATA_GAMMA1));
+					fprintf(gamma2,FORMAT,TG_GetValue(connectionId,TG_DATA_GAMMA2));
+					fprintf(theta,FORMAT,TG_GetValue(connectionId,TG_DATA_THETA));
                     /* Get and print out the new raw value */
                     fprintf( stdout, "%s: raw: %d\n", currTimeStr,
                             (int)TG_GetValue(connectionId, TG_DATA_RAW) );
@@ -108,11 +136,18 @@ main( void ) {
                 } /* end "If Packet contained a raw wave value..." */
                 
             } /* end "If TG_ReadPackets() was able to read a Packet..." */
-            
+            i++;
         } while( packetsRead > 0 ); /* Keep looping until all Packets read */
-        
     } /* end "Keep reading ThinkGear Packets for 5 seconds..." */
-    
+	fclose(alpha1);
+	fclose(alpha2);
+	fclose(beta1);
+	fclose(beta2);
+	fclose(delta);
+	fclose(theta);
+	fclose(gamma1);
+	fclose(gamma2);
+	}
     /* Clean up */
     TG_FreeConnection( connectionId );
     
