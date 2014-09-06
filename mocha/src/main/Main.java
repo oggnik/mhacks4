@@ -54,6 +54,23 @@ public class Main {
 			SensorValue sensorValue = new SensorValue();
 			
 			sensorValue.alpha1 = ThinkGear.GetValue(connectionID, ThinkGear.DATA_ALPHA1);
+			sensorValue.alpha2 = ThinkGear.GetValue(connectionID, ThinkGear.DATA_ALPHA2);
+			sensorValue.attention = ThinkGear.GetValue(connectionID, ThinkGear.DATA_ATTENTION);
+			sensorValue.battery = ThinkGear.GetValue(connectionID, ThinkGear.DATA_BATTERY);
+			sensorValue.beta1 = ThinkGear.GetValue(connectionID, ThinkGear.DATA_BETA1);
+			sensorValue.beta2 = ThinkGear.GetValue(connectionID, ThinkGear.DATA_BETA2);
+			sensorValue.delta = ThinkGear.GetValue(connectionID, ThinkGear.DATA_DELTA);
+			sensorValue.gamma1 = ThinkGear.GetValue(connectionID, ThinkGear.DATA_GAMMA1);
+			sensorValue.gamma2 = ThinkGear.GetValue(connectionID, ThinkGear.DATA_GAMMA2);
+			sensorValue.meditation = ThinkGear.GetValue(connectionID, ThinkGear.DATA_MEDITATION);
+			sensorValue.poorSignal = ThinkGear.GetValue(connectionID, ThinkGear.DATA_POOR_SIGNAL);
+			sensorValue.raw = ThinkGear.GetValue(connectionID, ThinkGear.DATA_RAW);
+			sensorValue.theta = ThinkGear.GetValue(connectionID, ThinkGear.DATA_THETA);
+			
+			// Update the view
+			view.update(sensorValue);
+			
+			// Update the pattern matcher
 		}
 	}
 }
