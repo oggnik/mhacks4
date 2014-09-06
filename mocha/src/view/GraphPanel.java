@@ -13,7 +13,7 @@ import model.SensorValue;
 public class GraphPanel extends JPanel {
 	public static final int GRAPH_WIDTH = 800;
 	public static final int GRAPH_HEIGHT = 500;
-	public static final int NUM_VALUES = 50;
+	public static final int NUM_VALUES = 500;
 	
 	// Values will hold NUM_VALUES values
 	private ArrayList<SensorValue> values;
