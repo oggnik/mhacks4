@@ -90,7 +90,7 @@ public class Main {
 			try {
 				File stageFile = new File("../new/app/app/stage.txt");
 				PrintWriter stageOut = new PrintWriter(stageFile);
-				stageOut.print(1);
+				stageOut.print('1');
 				stageOut.close();
 				System.out.println("Wrote a 1");
 			} catch (Exception e) {
