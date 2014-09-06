@@ -79,7 +79,9 @@ public class GraphPanel extends JPanel {
 	
 	private double getMaxValue() {
 		double max = 0;
-		for (SensorValue value : values) {
+		Object[] valuesArray = values.toArray();
+		for (Object o : valuesArray) {
+			SensorValue value = (SensorValue) o;
 			if (value.alpha1 > max) {
 				max = value.alpha1;
 			}
