@@ -26,9 +26,11 @@ public class Main {
 				try {
 					File stageFile = new File("../new/app/app/state.txt");
 					Scanner input = new Scanner(stageFile);
-					String state = input.next();
-					if (state.equals("0")) {
-						wait = false;
+					if (input.hasNext()) {
+						String state = input.next();
+						if (state.equals("0")) {
+							wait = false;
+						}
 					}
 					input.close();
 				} catch (Exception e) {
