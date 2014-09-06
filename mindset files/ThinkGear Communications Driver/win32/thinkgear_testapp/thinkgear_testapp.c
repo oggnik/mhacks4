@@ -1,18 +1,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+//#include<windows.h>
 
 #include "thinkgear.h"
 
-#define FORMAT "%f\n"
+#define FORMAT "%d\n"
 /**
  * Prompts and waits for the user to press ENTER.
  */
 void
 wait() {
 	FILE* state=fopen("state.txt","r");
-	char c;
-	fscanf(state,"%c",c);
+	char c='0';
+	fscanf(state,"%c",&c);
 	while(c!='1')
 	{
 		fclose(state);
@@ -23,6 +24,14 @@ wait() {
 		state=fopen("state.txt","r");
 	}
 	fclose(state);
+}
+
+void
+wait2() {
+	 printf( "\n" );
+    printf( "Press the ENTER key...\n" );
+    fflush( stdout );
+    getc( stdin );
 }
 
 /**
@@ -42,7 +51,7 @@ main( void ) {
     time_t currTime     = 0;
     char  *currTimeStr  = NULL;
 
-	FILE* bufferState=fopen("state.txt","w");
+	FILE* bufferState=fopen("state.txt","w+");
 	FILE* raw;
 	FILE* alpha1;
 	FILE* alpha2;
@@ -63,7 +72,7 @@ main( void ) {
     if( connectionId < 0 ) {
         fprintf( stderr, "ERROR: TG_GetNewConnectionId() returned %d.\n",
                 connectionId );
-       // wait();
+        wait2();
         exit( EXIT_FAILURE );
     }
     
@@ -71,7 +80,7 @@ main( void ) {
     errCode = TG_SetStreamLog( connectionId, "streamLog.txt" );
     if( errCode < 0 ) {
         fprintf( stderr, "ERROR: TG_SetStreamLog() returned %d.\n", errCode );
-       // wait();
+       wait2();
         exit( EXIT_FAILURE );
     }
     
@@ -79,7 +88,7 @@ main( void ) {
     errCode = TG_SetDataLog( connectionId, "dataLog.txt" );
     if( errCode < 0 ) {
         fprintf( stderr, "ERROR: TG_SetDataLog() returned %d.\n", errCode );
-        //wait();
+        wait2();
         exit( EXIT_FAILURE );
     }
     
@@ -97,7 +106,7 @@ main( void ) {
                          TG_STREAM_PACKETS );
     if( errCode < 0 ) {
         fprintf( stderr, "ERROR: TG_Connect() returned %d.\n", errCode );
-        wait();
+        wait2();
         exit( EXIT_FAILURE );
     }
    
@@ -107,7 +116,7 @@ main( void ) {
     startTime = time( NULL );
 	while(1){
 		int i=0;
-		wait();
+		
 		raw=fopen("raw.txt","w+");
         alpha1=fopen("alpha1.txt","w+");
 		alpha2=fopen("alpha2.txt","w+");
@@ -117,11 +126,11 @@ main( void ) {
 		theta=fopen("theta.txt","w+");
 		gamma1=fopen("gamma1.txt","w+");
 		gamma2=fopen("gamma2.txt","w+");
-    while(i<500){// difftime(time(NULL), startTime) < secondsToRun ) {
+    while(i<50000){// difftime(time(NULL), startTime) < secondsToRun ) {
 		
         /* Read all currently available Packets, one at a time... */
         do {
-            
+            //printf("%d\n",i);
             /* Read a single Packet from the connection */
             packetsRead = TG_ReadPackets( connectionId, 1 );
             
@@ -135,23 +144,24 @@ main( void ) {
                     currTime = time( NULL );
         			currTimeStr = ctime( &currTime );
 					fprintf(raw,FORMAT,TG_GetValue(connectionId,TG_DATA_RAW));
-					fprintf(alpha1,FORMAT,TG_GetValue(connectionId,TG_DATA_ALPHA1));
-					fprintf(alpha2,FORMAT,TG_GetValue(connectionId,TG_DATA_ALPHA2));
-					fprintf(beta1,FORMAT,TG_GetValue(connectionId,TG_DATA_BETA1));
-					fprintf(beta2,FORMAT,TG_GetValue(connectionId,TG_DATA_BETA2));
-					fprintf(delta,FORMAT,TG_GetValue(connectionId,TG_DATA_DELTA));
-					fprintf(gamma1,FORMAT,TG_GetValue(connectionId,TG_DATA_GAMMA1));
-					fprintf(gamma2,FORMAT,TG_GetValue(connectionId,TG_DATA_GAMMA2));
+					fprintf(alpha1,"%d\n",(int)TG_GetValue(connectionId,TG_DATA_ALPHA1));
+					fprintf(alpha2,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_ALPHA2));
+					fprintf(beta1,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_BETA1));
+					fprintf(beta2,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_BETA2));
+					fprintf(delta,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_DELTA));
+					fprintf(gamma1,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_GAMMA1));
+					fprintf(gamma2,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_GAMMA2));
 					fprintf(theta,FORMAT,TG_GetValue(connectionId,TG_DATA_THETA));
+					//printf(stdout,FORMAT,TG_GetValue(connectionId,TG_DATA_THETA));
                     /* Get and print out the new raw value */
-                    fprintf( stdout, "%s: raw: %d\n", currTimeStr,
-                            (int)TG_GetValue(connectionId, TG_DATA_RAW) );
-                    fflush( stdout );
-                    
+                    //fprintf( stdout, "%s: raw: %d\n", currTimeStr,
+                          //  (int)TG_GetValue(connectionId, TG_DATA_RAW) );
+                    //fflush( stdout );
+                      i++;
                 } /* end "If Packet contained a raw wave value..." */
                 
             } /* end "If TG_ReadPackets() was able to read a Packet..." */
-            i++;
+          
         } while( packetsRead > 0 ); /* Keep looping until all Packets read */
     } /* end "Keep reading ThinkGear Packets for 5 seconds..." */
 	fclose(raw);
@@ -163,11 +173,12 @@ main( void ) {
 	fclose(theta);
 	fclose(gamma1);
 	fclose(gamma2);
+	wait();
 	}
     /* Clean up */
     TG_FreeConnection( connectionId );
     
     /* End program */
-    wait();
+    //wait();
     return( EXIT_SUCCESS );
 }

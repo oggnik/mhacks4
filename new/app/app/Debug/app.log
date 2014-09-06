@@ -1,39 +1,38 @@
-﻿Build started 9/6/2014 4:46:32 PM.
+﻿Build started 9/6/2014 5:55:47 PM.
      1>Project "C:\Users\Matthew\Documents\mhacks4\new\app\app\app.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Debug\app.unsuccessfulbuild".
+         Creating "Debug\app.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt "..\..\..\mindset files\ThinkGear Communications Driver\win32\thinkgear_testapp\thinkgear_testapp.c"
          thinkgear_testapp.c
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(15): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(16): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : see declaration of 'fscanf'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(23): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(24): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(45): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(54): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(111): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(120): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(112): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(121): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(113): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(122): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(114): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(123): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(115): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(124): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(116): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(125): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(117): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(126): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(118): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(127): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(119): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(128): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(136): warning C4996: 'ctime': This function or variable may be unsafe. Consider using ctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(145): warning C4996: 'ctime': This function or variable may be unsafe. Consider using ctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\time.inl(86) : see declaration of 'ctime'
-     1>c:\users\matthew\documents\mhacks4\mindset files\thinkgear communications driver\win32\thinkgear_testapp\thinkgear_testapp.c(15): warning C4700: uninitialized local variable 'c' used
        ManifestResourceCompile:
          All outputs are up-to-date.
        Link:
@@ -53,4 +52,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.48
+Time Elapsed 00:00:00.40
