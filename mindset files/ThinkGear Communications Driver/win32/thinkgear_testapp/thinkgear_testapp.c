@@ -42,7 +42,7 @@ main( void ) {
     time_t currTime     = 0;
     char  *currTimeStr  = NULL;
 
-	FILE* bufferState=fopen("state.txt","rw+");
+	FILE* bufferState=fopen("state.txt","w");
 	FILE* raw;
 	FILE* alpha1;
 	FILE* alpha2;
