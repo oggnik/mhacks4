@@ -88,7 +88,7 @@ public class Main {
 			}
 			System.out.println("Done reading");
 			try {
-				File stageFile = new File("stage.txt");
+				File stageFile = new File("../new/app/app/stage.txt");
 				PrintWriter stageOut = new PrintWriter(stageFile);
 				stageOut.print(1);
 				stageOut.close();
