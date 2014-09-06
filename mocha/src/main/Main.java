@@ -23,7 +23,7 @@ public class Main {
 			
 			boolean wait = true;
 			while (wait) {
-				File stageFile = new File("../new/app/app/stage.txt");
+				File stageFile = new File("../new/app/app/state.txt");
 				Scanner input = new Scanner(stageFile);
 				int stage = input.nextInt();
 				if (stage == 0) {
