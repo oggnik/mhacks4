@@ -23,13 +23,17 @@ public class Main {
 			
 			boolean wait = true;
 			while (wait) {
-				File stageFile = new File("../new/app/app/state.txt");
-				Scanner input = new Scanner(stageFile);
-				int stage = input.nextInt();
-				if (stage == 0) {
-					wait = false;
+				try {
+					File stageFile = new File("../new/app/app/state.txt");
+					Scanner input = new Scanner(stageFile);
+					int stage = input.nextInt();
+					if (stage == 0) {
+						wait = false;
+					}
+					input.close();
+				} catch (Exception e) {
+					System.err.println(e);
 				}
-				input.close();
 			}
 			
 			File alpha1File = new File("../new/app/app/alpha1.txt");
@@ -82,10 +86,14 @@ public class Main {
 				}
 			}
 			
-			File stageFile = new File("stage.txt");
-			PrintWriter stageOut = new PrintWriter(stageFile);
-			stageOut.print(1);
-			stageOut.close();
+			try {
+				File stageFile = new File("stage.txt");
+				PrintWriter stageOut = new PrintWriter(stageFile);
+				stageOut.print(1);
+				stageOut.close();
+			} catch (Exception e) {
+				System.err.println("Error writing a 1: " + e);
+			}
 		}
 	}
 }
