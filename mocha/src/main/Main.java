@@ -89,7 +89,7 @@ public class Main {
 			}
 			System.out.println("Done reading");
 			try {
-				File stageFile = new File("../new/app/app/stage.txt");
+				File stageFile = new File("../new/app/app/state.txt");
 				PrintWriter stageOut = new PrintWriter(stageFile);
 				stageOut.print('1');
 				stageOut.close();
