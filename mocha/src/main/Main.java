@@ -1,5 +1,7 @@
 package main;
 
+import com.neurosky.thinkgear.ThinkGear;
+
 import matcher.PatternMatcher;
 import view.View;
 
@@ -23,6 +25,18 @@ public class Main {
 		 * Get Connection ID
 		 * Connect
 		 */
+		int connectionID = ThinkGear.GetNewConnectionId();
+		if (connectionID == -1) {
+			System.out.println("There are too many connection ids");
+			System.exit(1);
+		}
+		
+		String serialPort = "\\\\.\\COM5";
+		int result = ThinkGear.Connect(connectionID, serialPort, ThinkGear.BAUD_9600, ThinkGear.STREAM_PACKETS);
+		if (result == -1) {
+			System.out.println("Invalid connectionID");
+			System.exit(1);
+		}
 		
 		/*
 		 * Do magic calibration stuff
