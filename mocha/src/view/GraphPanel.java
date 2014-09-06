@@ -13,7 +13,7 @@ import model.SensorValue;
 public class GraphPanel extends JPanel {
 	public static final int GRAPH_WIDTH = 800;
 	public static final int GRAPH_HEIGHT = 500;
-	public static final int NUM_VALUES = 5000;
+	public static final int NUM_VALUES = 50;
 	
 	// Values will hold NUM_VALUES values
 	private ArrayList<SensorValue> values;
@@ -60,7 +60,7 @@ public class GraphPanel extends JPanel {
 				g2.setColor(View.BETA2_COLOR);
 				drawLine(lastX, last.beta2, x, value.beta2, yScale, g2);
 				g2.setColor(View.DELTA_COLOR);
-				drawLine(lastX, last.delta, x, value.delta, yScale, g2);
+				drawLine(lastX, last.delta / 10.0, x, value.delta / 10.0, yScale, g2);
 				g2.setColor(View.GAMMA1_COLOR);
 				drawLine(lastX, last.gamma1, x, value.gamma1, yScale, g2);
 				g2.setColor(View.GAMMA2_COLOR);
@@ -100,8 +100,8 @@ public class GraphPanel extends JPanel {
 			if (value.beta2 > max) {
 				max = value.beta2;
 			}
-			if (value.delta > max) {
-				max = value.delta;
+			if (value.delta / 10.0 > max) {
+				max = value.delta / 10.0;
 			}
 			if (value.gamma1 > max) {
 				max = value.gamma1;
