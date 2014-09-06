@@ -118,6 +118,14 @@ public class View {
 	public boolean getCalibrate() {
 		return calibrate;
 	}
+	
+	/**
+	 * Set the calibration
+	 * @param c
+	 */
+	public void setCalibrate(boolean c) {
+		calibrate = c;
+	}
 
 	/**
 	 * Determine if we should be running
