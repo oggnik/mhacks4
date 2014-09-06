@@ -1,6 +1,6 @@
 package main;
 
-public class MTest {
+public class Main {
 	static {
 		try {
 	    	System.load("C:\\thinkgear.dll");
