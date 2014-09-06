@@ -60,7 +60,7 @@ public class GraphPanel extends JPanel {
 				g2.setColor(View.BETA2_COLOR);
 				drawLine(lastX, last.beta2, x, value.beta2, yScale, g2);
 				g2.setColor(View.DELTA_COLOR);
-				drawLine(lastX, last.delta / 10.0, x, value.delta / 10.0, yScale, g2);
+				drawLine(lastX, last.delta / 100.0, x, value.delta / 100.0, yScale, g2);
 				g2.setColor(View.GAMMA1_COLOR);
 				drawLine(lastX, last.gamma1, x, value.gamma1, yScale, g2);
 				g2.setColor(View.GAMMA2_COLOR);
@@ -100,8 +100,8 @@ public class GraphPanel extends JPanel {
 			if (value.beta2 > max) {
 				max = value.beta2;
 			}
-			if (value.delta / 10.0 > max) {
-				max = value.delta / 10.0;
+			if (value.delta / 100.0 > max) {
+				max = value.delta / 100.0;
 			}
 			if (value.gamma1 > max) {
 				max = value.gamma1;
