@@ -28,7 +28,7 @@ import se.nicklasgavelin.sphero.response.ResponseMessage;
  * 
  * @author Nicklas Gavelin, nicklas.gavelin@gmail.com, Luleå University of Technology
  */
-public class SpheroManager extends JFrame
+public class ExampleAPI extends JFrame
 {
 	private static final long serialVersionUID = 6998786554264771793L;
 	
@@ -45,14 +45,14 @@ public class SpheroManager extends JFrame
 	@SuppressWarnings( "unused" )
 	public static void main( String[] args )
 	{
-		SpheroManager example_Site_API = new SpheroManager();
+		ExampleAPI example_Site_API = new ExampleAPI();
 		// new Thread( new Example_Site_API() ).start();
 	}
 
 	/**
 	 * Our example application
 	 */
-	public SpheroManager()
+	public ExampleAPI()
 	{
 		super( "Example API usage" );
 		this.setLayout( new GridLayout( 2, 1 ) );
