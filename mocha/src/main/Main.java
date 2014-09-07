@@ -88,7 +88,7 @@ public class Main {
 //				sensorValue.raw = alpha1In.nextDouble();
 				
 				// Update the view
-				view.update(sensorValue, patternMatcher);
+				view.update(sensorValue);
 				
 				// Update the pattern matcher if it should be running
 				if (view.getRunning()) {

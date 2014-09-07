@@ -34,6 +34,11 @@ public class PatternMatcher {
 		if(sensorvalues.size() > BUFFER_SIZE){
 			sensorvalues.remove(0);
 		}
+		System.out.println("alpha1: "+this.average.alpha1+"   alpha2:"+this.average.alpha2);
+		System.out.println("beta1: "+this.average.beta1+"   beta2:"+this.average.beta2);
+		System.out.println("gamma1: " +this.average.gamma1+"  gamma2: "+ this.average.gamma2);
+		System.out.println("delta: "+ this.average.delta+"  theta: "+this.average.theta);
+		System.out.println("-----------------\n");
 	}
 	
 	public void getAverage(){
