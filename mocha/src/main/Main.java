@@ -21,7 +21,6 @@ public class Main {
 //		SpheroManager spheroManager = new SpheroManager();
 //		Calibrator calibrator = new Calibrator(view, patternMatcher);
 		
-		boolean stopSphero = true;
 		while (true) {
 			/*
 			 * Do magic calibration stuff?
@@ -103,10 +102,6 @@ public class Main {
 				// Update the pattern matcher if it should be running
 				if (!view.getCalibrate() && view.getRunning()) {
 					patternMatcher.update(sensorValue);
-					stopSphero = true;
-				} else if (stopSphero) {
-					patternMatcher.stopSphero();
-					stopSphero = false;
 				}
 			}
 			
