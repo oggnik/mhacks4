@@ -47,7 +47,7 @@ public class PatternMatcher {
 		getAverage();
 		
 		if (val.attention > ATTENTION_THRESHOLD) {
-			spheroManager.moveForward();
+			spheroManager.turnLeft();
 		}
 //		
 //		// Add the average to the buffer average
