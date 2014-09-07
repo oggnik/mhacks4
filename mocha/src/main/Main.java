@@ -6,7 +6,9 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 import matcher.PatternMatcher;
+import model.Pattern;
 import model.SensorValue;
+import sphero.SpheroManager;
 import view.View;
 
 
@@ -15,6 +17,7 @@ public class Main {
 		// Insert global logic here
 		View view = new View();
 		PatternMatcher patternMatcher = new PatternMatcher();
+		SpheroManager spheroManager = new SpheroManager();
 		
 		while (true) {
 			/*
@@ -70,9 +73,9 @@ public class Main {
 				SensorValue sensorValue = new SensorValue();
 				
 				sensorValue.alpha1 = alpha1In.nextDouble();
-				patternMatcher.average.alpha1 = sensorValue.alpha1;
+				//patternMatcher.average.alpha1 = sensorValue.alpha1;
 				sensorValue.alpha2 = alpha2In.nextDouble();
-				patternMatcher.average.alpha2 = sensorValue.alpha2;
+				//patternMatcher.average.alpha2 = sensorValue.alpha2;
 				sensorValue.beta1 = beta1In.nextDouble();
 				sensorValue.beta2 = beta2In.nextDouble();
 				sensorValue.delta = deltaIn.nextDouble();
@@ -95,6 +98,11 @@ public class Main {
 					patternMatcher.update(sensorValue);
 				}
 			}
+			
+			// Determine the move to make
+			determineMove(patternMatcher, spheroManager);
+			
+			
 			//System.out.println("Done reading");
 			try {
 				File stageFile = new File("../new/app/app/state.txt");
@@ -106,6 +114,19 @@ public class Main {
 				System.err.println("Error writing a 1: " + e);
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	public static void determineMove(PatternMatcher patternMatcher, SpheroManager spheroManager) {
+		Pattern match = patternMatcher.findMatch();
+		if (match.color.equals("yellow")) {
+			spheroManager.turnLeft();
+		} else if (match.color.equals("green")) {
+			spheroManager.moveForward();
+		} else if (match.color.equals("blue")) {
+			spheroManager.turnRight();
+		} else if (match.color.equals("red")) {
+			// Do squat
 		}
 	}
 }

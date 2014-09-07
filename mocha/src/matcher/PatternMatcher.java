@@ -1,6 +1,9 @@
 package matcher;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import model.Pattern;
 import model.SensorValue;
@@ -12,17 +15,16 @@ import sphero.SpheroManager;
 public class PatternMatcher {
 	public static final int BUFFER_SIZE = 500;
 	ArrayList<SensorValue> sensorvalues; 
-	public SensorValue average;
-	public ColorPattern colorPattern;
-	private boolean calibrate;
-	int colorNum;
-	SpheroManager spheroManager;
+	private ArrayList<SensorValue> averageValues; 
+	public SensorValue val;
+	private ColorPattern colorPattern;
+	int colorNum = 0;
+	
 	public PatternMatcher() {
 		sensorvalues = new ArrayList<SensorValue>();
-		colorPattern = new ColorPattern();
-		spheroManager = new SpheroManager();
-		colorNum =colorPattern.count;
-		average = new SensorValue();
+		averageValues = new ArrayList<SensorValue>();
+		colorPattern = null;
+		val = new SensorValue();
 	}
 	
 	/**
@@ -34,10 +36,20 @@ public class PatternMatcher {
 		if(sensorvalues.size() > BUFFER_SIZE){
 			sensorvalues.remove(0);
 		}
-		System.out.println("alpha1: "+this.average.alpha1+"   alpha2:"+this.average.alpha2);
-		System.out.println("beta1: "+this.average.beta1+"   beta2:"+this.average.beta2);
-		System.out.println("gamma1: " +this.average.gamma1+"  gamma2: "+ this.average.gamma2);
-		System.out.println("delta: "+ this.average.delta+"  theta: "+this.average.theta);
+		// Get the average of the buffer
+		getAverage();
+		
+		// Add the average to the buffer average
+		averageValues.add(val);
+		if (averageValues.size() > BUFFER_SIZE) {
+			averageValues.remove(0);
+		}
+		
+		
+		System.out.println("alpha1: "+this.val.alpha1+"   alpha2:"+this.val.alpha2);
+		System.out.println("beta1: "+this.val.beta1+"   beta2:"+this.val.beta2);
+		System.out.println("gamma1: " +this.val.gamma1+"  gamma2: "+ this.val.gamma2);
+		System.out.println("delta: "+ this.val.delta+"  theta: "+this.val.theta);
 		System.out.println("-----------------\n");
 	}
 	
@@ -60,14 +72,14 @@ public class PatternMatcher {
 			deltaave += sensorvalues.get(i).delta;
 			thetaave += sensorvalues.get(i).theta;
 		}
-		average.alpha1 = alpha1ave /BUFFER_SIZE;
-		average.alpha2 = alpha2ave /BUFFER_SIZE;
-		average.beta1 = beta1ave /BUFFER_SIZE;
-		average.beta2 = beta2ave /BUFFER_SIZE;
-		average.gamma1 = gamma1ave /BUFFER_SIZE;
-		average.gamma2 = gamma2ave /BUFFER_SIZE;
-		average.delta = deltaave /BUFFER_SIZE;
-		average.theta = thetaave /BUFFER_SIZE;
+		val.alpha1 = alpha1ave /BUFFER_SIZE;
+		val.alpha2 = alpha2ave /BUFFER_SIZE;
+		val.beta1 = beta1ave /BUFFER_SIZE;
+		val.beta2 = beta2ave /BUFFER_SIZE;
+		val.gamma1 = gamma1ave /BUFFER_SIZE;
+		val.gamma2 = gamma2ave /BUFFER_SIZE;
+		val.delta = deltaave /BUFFER_SIZE;
+		val.theta = thetaave /BUFFER_SIZE;
 		/*System.out.println("alpha1: "+average.alpha1+"   alpha2:"+average.alpha2);
 		System.out.println("beta1: "+average.beta1+"   beta2:"+average.beta2);
 		System.out.println("gamma1: " +average.gamma1+"  gamma2: "+ average.gamma2);
@@ -80,12 +92,44 @@ public class PatternMatcher {
 	 * return type of findMatch()
 	 * @param sensorValue
 	 */
-	public String findMatch(PatternMatcher patternMatcher){
-		for(int i = 0; i < colorPattern.patternArray.size(); i++){
-			if(patternMatcher.matchColor((Pattern)colorPattern.patternArray.get(i)))
-				return "Matched color is found at "+i;
+	public Pattern findMatch() {
+		HashMap<Pattern, Integer> map = new HashMap<Pattern, Integer>();
+		for (SensorValue val : averageValues) {
+			Pattern matchPattern = findMatch(val);
+			map.put(matchPattern, map.get(matchPattern) + 1);
 		}
-		return "No match";
+		
+		Pattern maxMatchingPattern = null;
+		int maxMatches = 0;
+		
+		for (Map.Entry<Pattern, Integer> entry : map.entrySet()) {
+			if (entry.getValue() > maxMatches) {
+				maxMatchingPattern = entry.getKey();
+				maxMatches = entry.getValue();
+			}
+		}
+		if (maxMatches > BUFFER_SIZE / 2) {
+			return maxMatchingPattern;
+		}
+		return null;
+	}
+	
+	/**
+	 * For a specific SensorValue, which pattern does it match the best?
+	 * @param val
+	 * @return The best matching pattern
+	 */
+	public Pattern findMatch(SensorValue val) {
+		Pattern bestPattern = colorPattern.patternArray.get(0);
+		double max = 0;
+		for (int i = 0; i < colorPattern.patternArray.size(); i++) {
+			double match = matchColor(val, colorPattern.patternArray.get(i));
+			if (match > max) {
+				max = match;
+				bestPattern = colorPattern.patternArray.get(i);
+			}
+		}
+		return bestPattern;
 	}
 	
 	
@@ -94,38 +138,29 @@ public class PatternMatcher {
 	 * @param pattern
 	 * @return
 	 */
-	public boolean matchColor (Pattern pattern){
-		if(average.alpha1 < pattern.loweralpha1 || average.alpha1 > pattern.higheralpha1)
-			return false;
-		if(average.alpha2 < pattern.loweralpha2 || average.alpha2 > pattern.higheralpha2)
-			return false;
-		if(average.beta1 < pattern.lowerbeta1 || average.beta1 > pattern.higherbeta1)
-			return false;
-		if(average.beta2 < pattern.lowerbeta2 || average.beta2 > pattern.higherbeta2)
-			return false;
-		if(average.gamma1 < pattern.lowergamma1 || average.gamma1 > pattern.highergamma1)
-			return false;
-		if(average.gamma2 < pattern.lowergamma2 || average.gamma2 > pattern.highergamma2)
-			return false;
-		if(average.theta < pattern.lowertheta || average.theta > pattern.highertheta)
-			return false;
-		if(average.delta < pattern.lowerdelta || average.alpha1 > pattern.higherdelta)
-			return false;
-		return true;
-	}
-	/**
-	 * Determine if we should calibrate or not
-	 * @return calibrate
-	 */
-	public boolean getCalibrate() {
-		return calibrate;
+	public double matchColor (SensorValue val, Pattern pattern){
+		int matches = 0;
+		if(val.alpha1 > pattern.loweralpha1 && val.alpha1 < pattern.higheralpha1)
+			matches++;
+		if(val.alpha2 > pattern.loweralpha2 && val.alpha2 < pattern.higheralpha2)
+			matches++;
+		if(val.beta1 > pattern.lowerbeta1 && val.beta1 < pattern.higherbeta1)
+			matches++;
+		if(val.beta2 > pattern.lowerbeta2 && val.beta2 < pattern.higherbeta2)
+			matches++;
+		if(val.gamma1 > pattern.lowergamma1 && val.gamma1 < pattern.highergamma1)
+			matches++;
+		if(val.gamma2 > pattern.lowergamma2 && val.gamma2 < pattern.highergamma2)
+			matches++;
+		if(val.theta > pattern.lowertheta && val.theta < pattern.highertheta)
+			matches++;
+		if(val.delta > pattern.lowerdelta && val.alpha1 < pattern.higherdelta)
+			matches++;
+		return matches / 8.0;
 	}
 	
-	/**
-	 * Set the calibration
-	 * @param c
-	 */
-	public void setCalibrate(boolean c) {
-		calibrate = c;
+	public void setColorPattern(ColorPattern c) {
+		colorPattern = c;
+		colorNum = colorPattern.patternArray.size();
 	}
 }

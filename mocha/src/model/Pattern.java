@@ -20,10 +20,12 @@ public class Pattern {
 	public double higherdelta;
 	public double highertheta;
 	public double highergamma1;
-	public double highergamma2; 
+	public double highergamma2;
+	
+	public String color;
 
-	public Pattern(){
-		
+	public Pattern(String color){
+		this.color = color;
 	}
 	
 }

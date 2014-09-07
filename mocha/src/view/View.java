@@ -35,7 +35,7 @@ public class View {
 	public View() {
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		calibrate = false;
+		calibrate = true;
 		running = false;
 		
 		JPanel content = new JPanel();

@@ -19,6 +19,6 @@ public class PatternMain {
 		pm.getAverage();
 		System.out.println(pm.sensorvalues.size());
 
-		System.out.println(pm.findMatch(pm));
+		System.out.println(pm.findMatch());
 	}
 }
