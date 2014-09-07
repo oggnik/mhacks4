@@ -95,7 +95,7 @@ public class Main {
 				PrintWriter stageOut = new PrintWriter(stageFile);
 				stageOut.print('1');
 				stageOut.close();
-				System.out.println("Wrote a 1");
+				//System.out.println("Wrote a 1");
 			} catch (Exception e) {
 				System.err.println("Error writing a 1: " + e);
 				e.printStackTrace();
