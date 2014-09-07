@@ -48,6 +48,8 @@ public class PatternMatcher {
 		
 		if (val.attention > ATTENTION_THRESHOLD) {
 			spheroManager.turnLeft();
+		} else {
+			spheroManager.stopSphero();
 		}
 //		
 //		// Add the average to the buffer average
@@ -175,5 +177,9 @@ public class PatternMatcher {
 	public void setColorPattern(ColorPattern c) {
 		colorPattern = c;
 		colorNum = colorPattern.patternArray.size();
+	}
+
+	public void stopSphero() {
+		spheroManager.stopSphero();
 	}
 }
