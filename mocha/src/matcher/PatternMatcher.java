@@ -19,7 +19,7 @@ public class PatternMatcher {
 	public SensorValue val;
 	private ColorPattern colorPattern;
 	int colorNum = 0;
-	
+
 	public PatternMatcher() {
 		sensorvalues = new ArrayList<SensorValue>();
 		averageValues = new ArrayList<SensorValue>();
@@ -32,6 +32,7 @@ public class PatternMatcher {
 	 * @param sensorValue
 	 */
 	public void update(SensorValue sensorValue) {
+		
 		sensorvalues.add(sensorValue);
 		if(sensorvalues.size() > BUFFER_SIZE){
 			sensorvalues.remove(0);
@@ -44,13 +45,6 @@ public class PatternMatcher {
 		if (averageValues.size() > BUFFER_SIZE) {
 			averageValues.remove(0);
 		}
-		
-		
-		System.out.println("alpha1: "+this.val.alpha1+"   alpha2:"+this.val.alpha2);
-		System.out.println("beta1: "+this.val.beta1+"   beta2:"+this.val.beta2);
-		System.out.println("gamma1: " +this.val.gamma1+"  gamma2: "+ this.val.gamma2);
-		System.out.println("delta: "+ this.val.delta+"  theta: "+this.val.theta);
-		System.out.println("-----------------\n");
 	}
 	
 	public void getAverage(){
@@ -96,7 +90,11 @@ public class PatternMatcher {
 		HashMap<Pattern, Integer> map = new HashMap<Pattern, Integer>();
 		for (SensorValue val : averageValues) {
 			Pattern matchPattern = findMatch(val);
-			map.put(matchPattern, map.get(matchPattern) + 1);
+			Integer num = map.get(matchPattern);
+			if (num == null) {
+				num = new Integer(0);
+			}
+			map.put(matchPattern, num + 1);
 		}
 		
 		Pattern maxMatchingPattern = null;
@@ -109,6 +107,7 @@ public class PatternMatcher {
 			}
 		}
 		if (maxMatches > BUFFER_SIZE / 2) {
+			System.out.println("Num matches: " + maxMatches);
 			return maxMatchingPattern;
 		}
 		return null;

@@ -21,6 +21,7 @@ public class Main {
 		SpheroManager spheroManager = new SpheroManager();
 		Calibrator calibrator = new Calibrator(view, patternMatcher);
 		
+		boolean startCalibration = false;
 		while (true) {
 			/*
 			 * Do magic calibration stuff?
@@ -95,7 +96,7 @@ public class Main {
 				// Update the view
 				view.update(sensorValue);
 				
-				if (view.getCalibrate()) {
+				if (startCalibration && view.getCalibrate()) {
 					calibrator.calibrate(sensorValue);
 				}
 				
@@ -106,7 +107,9 @@ public class Main {
 			}
 			
 			// Determine the move to make
-			determineMove(patternMatcher, spheroManager);
+			if (!view.getCalibrate() && view.getRunning()) {
+				determineMove(patternMatcher, spheroManager);
+			}
 			
 			
 			//System.out.println("Done reading");
@@ -120,11 +123,17 @@ public class Main {
 				System.err.println("Error writing a 1: " + e);
 				e.printStackTrace();
 			}
+			startCalibration = true;
 		}
 	}
 	
 	public static void determineMove(PatternMatcher patternMatcher, SpheroManager spheroManager) {
 		Pattern match = patternMatcher.findMatch();
+		if (match == null) {
+			System.out.println("No match");
+			return;
+		}
+		System.out.println(match.color);
 		if (match.color.equals("yellow")) {
 			spheroManager.turnLeft();
 		} else if (match.color.equals("green")) {
