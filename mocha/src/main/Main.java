@@ -110,7 +110,9 @@ public class Main {
 //			if (!view.getCalibrate() && view.getRunning()) {
 //				determineMove(patternMatcher, spheroManager);
 //			}
-			
+			if (!view.getRunning()) {
+				patternMatcher.stopSphero();
+			}
 			
 			//System.out.println("Done reading");
 			try {
