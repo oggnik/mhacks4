@@ -21,7 +21,7 @@ public class Main {
 //		SpheroManager spheroManager = new SpheroManager();
 //		Calibrator calibrator = new Calibrator(view, patternMatcher);
 		
-		boolean startCalibration = false;
+		boolean stopSphero = true;
 		while (true) {
 			/*
 			 * Do magic calibration stuff?
@@ -103,6 +103,10 @@ public class Main {
 				// Update the pattern matcher if it should be running
 				if (!view.getCalibrate() && view.getRunning()) {
 					patternMatcher.update(sensorValue);
+					stopSphero = true;
+				} else if (stopSphero) {
+					patternMatcher.stopSphero();
+					stopSphero = false;
 				}
 			}
 			
@@ -110,9 +114,6 @@ public class Main {
 //			if (!view.getCalibrate() && view.getRunning()) {
 //				determineMove(patternMatcher, spheroManager);
 //			}
-			if (!view.getRunning()) {
-				patternMatcher.stopSphero();
-			}
 			
 			//System.out.println("Done reading");
 			try {
@@ -125,7 +126,6 @@ public class Main {
 				System.err.println("Error writing a 1: " + e);
 				e.printStackTrace();
 			}
-			startCalibration = true;
 		}
 	}
 	

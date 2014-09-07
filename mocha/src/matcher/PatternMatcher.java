@@ -21,10 +21,13 @@ public class PatternMatcher {
 	private ColorPattern colorPattern;
 	int colorNum = 0;
 	
+	private boolean stopSphero;
+	
 	private SpheroManager spheroManager;
 
 	public PatternMatcher() {
 		spheroManager = new SpheroManager();
+		stopSphero = true;
 		sensorvalues = new ArrayList<SensorValue>();
 		averageValues = new ArrayList<SensorValue>();
 		colorPattern = null;
@@ -48,8 +51,12 @@ public class PatternMatcher {
 		
 		if (val.attention > ATTENTION_THRESHOLD) {
 			spheroManager.turnLeft();
+			stopSphero = true;
 		} else {
-			spheroManager.stopSphero();
+			if (stopSphero) {
+				spheroManager.stopSphero();
+				stopSphero = false;
+			}
 		}
 //		
 //		// Add the average to the buffer average
