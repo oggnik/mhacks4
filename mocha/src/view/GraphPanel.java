@@ -51,21 +51,21 @@ public class GraphPanel extends JPanel {
 			
 			if (last != null && value != null) {
 				g2.setColor(View.ALPHA1_COLOR);
-				drawLine(lastX, last.alpha1, x, value.alpha1, GRAPH_WIDTH / maxValue.alpha1, g2);
+				drawLine(lastX, last.alpha1, x, value.alpha1, GRAPH_HEIGHT / maxValue.alpha1, g2);
 				g2.setColor(View.ALPHA2_COLOR);
-				drawLine(lastX, last.alpha2, x, value.alpha2, GRAPH_WIDTH / maxValue.alpha2, g2);
+				drawLine(lastX, last.alpha2, x, value.alpha2, GRAPH_HEIGHT / maxValue.alpha2, g2);
 				g2.setColor(View.BETA1_COLOR);
-				drawLine(lastX, last.beta1, x, value.beta1, GRAPH_WIDTH / maxValue.beta1, g2);
+				drawLine(lastX, last.beta1, x, value.beta1, GRAPH_HEIGHT / maxValue.beta1, g2);
 				g2.setColor(View.BETA2_COLOR);
-				drawLine(lastX, last.beta2, x, value.beta2, GRAPH_WIDTH / maxValue.beta2, g2);
+				drawLine(lastX, last.beta2, x, value.beta2, GRAPH_HEIGHT / maxValue.beta2, g2);
 				g2.setColor(View.DELTA_COLOR);
-				drawLine(lastX, last.delta, x, value.delta, GRAPH_WIDTH / maxValue.delta, g2);
+				drawLine(lastX, last.delta, x, value.delta, GRAPH_HEIGHT / maxValue.delta, g2);
 				g2.setColor(View.GAMMA1_COLOR);
-				drawLine(lastX, last.gamma1, x, value.gamma1, GRAPH_WIDTH / maxValue.gamma1, g2);
+				drawLine(lastX, last.gamma1, x, value.gamma1, GRAPH_HEIGHT / maxValue.gamma1, g2);
 				g2.setColor(View.GAMMA2_COLOR);
-				drawLine(lastX, last.gamma2, x, value.gamma2, GRAPH_WIDTH / maxValue.gamma2, g2);
+				drawLine(lastX, last.gamma2, x, value.gamma2, GRAPH_HEIGHT / maxValue.gamma2, g2);
 				g2.setColor(View.THETA_COLOR);
-				drawLine(lastX, last.theta, x, value.theta, GRAPH_WIDTH / maxValue.theta, g2);
+				drawLine(lastX, last.theta, x, value.theta, GRAPH_HEIGHT / maxValue.theta, g2);
 				g2.setColor(Color.BLACK);
 			}
 			
@@ -112,6 +112,14 @@ public class GraphPanel extends JPanel {
 				max.theta = value.theta;
 			}
 		}
+//		max.alpha1 += val.alpha1;
+//		max.alpha2 += val.alpha2;
+//		max.beta1 += val.beta1;
+//		max.beta2 += val.beta2;
+//		max.delta += val.delta;
+//		max.gamma1 += val.gamma1;
+//		max.gamma2 += val.gamma2;
+//		max.theta += val.theta;
 		return max;
 	}
 	
