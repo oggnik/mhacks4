@@ -13,7 +13,7 @@ import sphero.SpheroManager;
  *
  */
 public class PatternMatcher {
-	public static final int BUFFER_SIZE = 500;
+	public static final int BUFFER_SIZE = 1000;
 	ArrayList<SensorValue> sensorvalues; 
 	private ArrayList<SensorValue> averageValues; 
 	public SensorValue val;
@@ -92,7 +92,8 @@ public class PatternMatcher {
 	public Pattern findMatch() {
 		double totalAttention = 0;
 		HashMap<Pattern, Integer> map = new HashMap<Pattern, Integer>();
-		for (SensorValue val : averageValues) {
+		System.out.println("sensorvaluesSize: " + sensorvalues.size());
+		for (SensorValue val : sensorvalues) {
 			totalAttention += val.attention;
 			Pattern matchPattern = findMatch(val);
 			Integer num = map.get(matchPattern);
@@ -101,12 +102,14 @@ public class PatternMatcher {
 			}
 			map.put(matchPattern, num + 1);
 		}
-		double avgAttention = totalAttention / averageValues.size();
+		double avgAttention = totalAttention / sensorvalues.size();
 		
 		Pattern maxMatchingPattern = null;
 		int maxMatches = 0;
 		
+		System.out.println(map.entrySet().size());
 		for (Map.Entry<Pattern, Integer> entry : map.entrySet()) {
+			System.out.println(entry.getValue());
 			if (entry.getValue() > maxMatches) {
 				maxMatchingPattern = entry.getKey();
 				maxMatches = entry.getValue();
@@ -127,9 +130,11 @@ public class PatternMatcher {
 	public Pattern findMatch(SensorValue val) {
 		Pattern bestPattern = colorPattern.patternArray.get(0);
 		double min = Double.MAX_VALUE;
+		//System.out.println("patternArraySize: " + colorPattern.patternArray.size());
 		for (int i = 0; i < colorPattern.patternArray.size(); i++) {
 			double match = matchColor(val, colorPattern.patternArray.get(i));
 			if (match < min) {
+				//System.out.println("min: " + i + ", " + match);
 				min = match;
 				bestPattern = colorPattern.patternArray.get(i);
 			}

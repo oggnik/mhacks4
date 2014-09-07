@@ -1,4 +1,4 @@
-﻿Build started 9/7/2014 2:14:40 AM.
+﻿Build started 9/7/2014 3:03:54 AM.
      1>Project "C:\Users\Matthew\Documents\mhacks4\new\app\app\app.vcxproj" on node 2 (rebuild target(s)).
      1>_PrepareForClean:
          Deleting file "Debug\app.lastbuildstate".
@@ -63,4 +63,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.87
+Time Elapsed 00:00:00.99

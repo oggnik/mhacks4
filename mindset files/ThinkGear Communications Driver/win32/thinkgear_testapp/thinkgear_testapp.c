@@ -134,7 +134,7 @@ main( void ) {
 		
     while(i<50){// difftime(time(NULL), startTime) < secondsToRun ) {
 		
-        /* Read all currently available Packets, one at a time... */
+        /* Read all currently available Packets, one at a time... */ 
         do {
             //printf("%d\n",i);
             /* Read a single Packet from the connection */
