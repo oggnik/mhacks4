@@ -23,14 +23,22 @@ public class Main {
 			
 			boolean wait = true;
 			while (wait) {
-				File stageFile = new File("../new/app/app/state.txt");
-				Scanner input = new Scanner(stageFile);
-				int stage = input.nextInt();
-				if (stage == 0) {
-					wait = false;
+				try {
+					File stageFile = new File("../new/app/app/state.txt");
+					Scanner input = new Scanner(stageFile);
+					if (input.hasNext()) {
+						String state = input.next();
+						if (state.equals("0")) {
+							wait = false;
+						}
+					}
+					input.close();
+				} catch (Exception e) {
+					System.err.println(e);
+					e.printStackTrace();
 				}
-				input.close();
 			}
+			//System.out.println("Reading");
 			
 			File alpha1File = new File("../new/app/app/alpha1.txt");
 			Scanner alpha1In = new Scanner(alpha1File);
@@ -81,11 +89,17 @@ public class Main {
 					patternMatcher.update(sensorValue);
 				}
 			}
-			
-			File stageFile = new File("stage.txt");
-			PrintWriter stageOut = new PrintWriter(stageFile);
-			stageOut.print(1);
-			stageOut.close();
+			//System.out.println("Done reading");
+			try {
+				File stageFile = new File("../new/app/app/state.txt");
+				PrintWriter stageOut = new PrintWriter(stageFile);
+				stageOut.print('1');
+				stageOut.close();
+				System.out.println("Wrote a 1");
+			} catch (Exception e) {
+				System.err.println("Error writing a 1: " + e);
+				e.printStackTrace();
+			}
 		}
 	}
 }
