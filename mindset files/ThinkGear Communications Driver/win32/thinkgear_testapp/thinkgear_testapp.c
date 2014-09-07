@@ -55,6 +55,7 @@ main( void ) {
     time_t currTime     = 0;
     char  *currTimeStr  = NULL;
 
+	FILE* attention;
 	FILE* bufferState=fopen("state.txt","w+");
 	FILE* raw;
 	FILE* alpha1;
@@ -120,7 +121,7 @@ main( void ) {
     startTime = time( NULL );
 	while(1){
 		int i=0;
-		
+		attention=fopen("attention.txt","w+");
 		raw=fopen("raw.txt","w+");
         alpha1=fopen("alpha1.txt","w+");
 		alpha2=fopen("alpha2.txt","w+");
@@ -162,6 +163,7 @@ main( void ) {
 						fprintf(gamma1,FORMAT,0);
 						fprintf(gamma2,FORMAT,0);
 						fprintf(theta,FORMAT,0);
+						fprintf(attention,FORMAT,0);
 					}
 					else
 					{
@@ -174,6 +176,7 @@ main( void ) {
 						fprintf(gamma1,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_GAMMA1));
 						fprintf(gamma2,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_GAMMA2));
 						fprintf(theta,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_THETA));
+						fprintf(theta,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_ATTENTION));
 					}
 					//printf(stdout,FORMAT,TG_GetValue(connectionId,TG_DATA_THETA));
                     /* Get and print out the new raw value */
@@ -196,6 +199,7 @@ main( void ) {
 	fclose(theta);
 	fclose(gamma1);
 	fclose(gamma2);
+	fclose(attention);
 	bufferState=fopen("state.txt","w");
 	fwrite("0",sizeof(char),1,bufferState);
 	fclose(bufferState);
