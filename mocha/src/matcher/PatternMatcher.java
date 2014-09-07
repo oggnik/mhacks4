@@ -1,9 +1,10 @@
 package matcher;
 
-import model.SensorValue;
-import matcher.ColorPattern;
-import model.Pattern;
 import java.util.ArrayList;
+
+import model.Pattern;
+import model.SensorValue;
+import sphero.SpheroManager;
 /**
  * The pattern matching part
  *
@@ -15,9 +16,11 @@ public class PatternMatcher {
 	public ColorPattern colorPattern;
 	private boolean calibrate;
 	int colorNum;
+	SpheroManager spheroManager;
 	public PatternMatcher() {
 		sensorvalues = new ArrayList<SensorValue>();
 		colorPattern = new ColorPattern();
+		spheroManager = new SpheroManager();
 		colorNum =colorPattern.count;
 		average = new SensorValue();
 	}
