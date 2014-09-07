@@ -3,7 +3,8 @@ package matcher;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import model.Pattern;
 import model.SensorValue;
@@ -21,17 +22,26 @@ public class PatternMatcher {
 	private ColorPattern colorPattern;
 	int colorNum = 0;
 	
-	private boolean stopSphero;
+	public boolean allowSpheroMove;
 	
 	private SpheroManager spheroManager;
+	private Timer timer;
 
 	public PatternMatcher() {
 		spheroManager = new SpheroManager();
-		stopSphero = true;
+		allowSpheroMove = true;
+		timer = new Timer();
 		sensorvalues = new ArrayList<SensorValue>();
 		averageValues = new ArrayList<SensorValue>();
 		colorPattern = null;
 		val = new SensorValue();
+	}
+	
+	class LimitSpheroTask extends TimerTask {
+		@Override
+		public void run() {
+			allowSpheroMove = true;
+		}	
 	}
 	
 	/**
@@ -49,14 +59,10 @@ public class PatternMatcher {
 		// Get the average of the buffer
 		getAverage();
 		
-		if (val.attention > ATTENTION_THRESHOLD) {
+		if (val.attention > ATTENTION_THRESHOLD && allowSpheroMove) {
 			spheroManager.turnLeft();
-			stopSphero = true;
-		} else {
-			if (stopSphero) {
-				spheroManager.stopSphero();
-				stopSphero = false;
-			}
+			allowSpheroMove = false;
+			timer.schedule(new LimitSpheroTask(), 100);
 		}
 //		
 //		// Add the average to the buffer average
