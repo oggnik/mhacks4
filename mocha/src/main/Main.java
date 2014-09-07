@@ -10,6 +10,7 @@ import model.Pattern;
 import model.SensorValue;
 import sphero.SpheroManager;
 import view.View;
+import calibrator.Calibrator;
 
 
 public class Main {
@@ -18,6 +19,7 @@ public class Main {
 		View view = new View();
 		PatternMatcher patternMatcher = new PatternMatcher();
 		SpheroManager spheroManager = new SpheroManager();
+		Calibrator calibrator = new Calibrator(view, patternMatcher);
 		
 		while (true) {
 			/*
@@ -93,8 +95,12 @@ public class Main {
 				// Update the view
 				view.update(sensorValue);
 				
+				if (view.getCalibrate()) {
+					calibrator.calibrate(sensorValue);
+				}
+				
 				// Update the pattern matcher if it should be running
-				if (view.getRunning()) {
+				if (!view.getCalibrate() && view.getRunning()) {
 					patternMatcher.update(sensorValue);
 				}
 			}

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import model.*;
 public class ColorPattern {
 	ArrayList <Pattern> patternArray;
-	public ColorPattern(){
-		patternArray = new ArrayList<Pattern>();
+	public ColorPattern(ArrayList<Pattern> patterns){
+		patternArray = patterns;
 	}
 }

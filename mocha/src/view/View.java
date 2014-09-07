@@ -30,7 +30,6 @@ public class View {
 	private ValuePanel valuePanel;
 	private boolean calibrate;
 	private boolean running;
-	private PatternMatcher patternPatcher;
 	
 	public View() {
 		frame = new JFrame();
