@@ -40,8 +40,8 @@ public class SpheroManager implements RobotListener, BluetoothDiscoveryListener 
 	 */
 	public void moveForward() {
 		for (Robot r : robots) {
-			r.sendCommand( new RollCommand( 1, 0, false ) );
-			r.sendCommand( new RollCommand( 1, 0, true ), 500 );
+			r.sendCommand( new RollCommand( (float) .5, 0, false ) );
+			r.sendCommand( new RollCommand( (float) .5, 0, true ), 500 );
 		}
 	}
 	
@@ -50,8 +50,8 @@ public class SpheroManager implements RobotListener, BluetoothDiscoveryListener 
 	 */
 	public void turnRight() {
 		for (Robot r : robots) {
-			r.sendCommand( new RollCommand( 1, 30, false ) );
-			r.sendCommand( new RollCommand( 1, 30, true ), 500 );
+			r.sendCommand( new RollCommand( (float) .5, 90, false ) );
+			r.sendCommand( new RollCommand( (float) .5, 90, true ), 500 );
 		}
 	}
 	
@@ -60,8 +60,8 @@ public class SpheroManager implements RobotListener, BluetoothDiscoveryListener 
 	 */
 	public void turnLeft() {
 		for (Robot r : robots) {
-			r.sendCommand( new RollCommand( 1, 330, false ) );
-			r.sendCommand( new RollCommand( 1, 330, true ), 500 );
+			r.sendCommand( new RollCommand( (float) .5, 270, false ) );
+			r.sendCommand( new RollCommand( (float) .5, 270, true ), 500 );
 		}
 	}
 	
