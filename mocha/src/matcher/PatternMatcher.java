@@ -62,7 +62,7 @@ public class PatternMatcher {
 		if (val.attention > ATTENTION_THRESHOLD && allowSpheroMove) {
 			spheroManager.turnLeft();
 			allowSpheroMove = false;
-			timer.schedule(new LimitSpheroTask(), 100);
+			timer.schedule(new LimitSpheroTask(), 200);
 		}
 //		
 //		// Add the average to the buffer average

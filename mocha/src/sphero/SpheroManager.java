@@ -61,7 +61,7 @@ public class SpheroManager implements RobotListener, BluetoothDiscoveryListener 
 	public void turnLeft() {
 		for (Robot r : robots) {
 			r.sendCommand( new RollCommand( 1, 270, false ) );
-			r.sendCommand( new RollCommand( 1, 270, true ), 90 );
+			r.sendCommand( new RollCommand( 1, 270, true ), 100 );
 		}
 	}
 	
