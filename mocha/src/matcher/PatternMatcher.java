@@ -14,13 +14,17 @@ import sphero.SpheroManager;
  */
 public class PatternMatcher {
 	public static final int BUFFER_SIZE = 1000;
+	public static final int ATTENTION_THRESHOLD = 55;
 	ArrayList<SensorValue> sensorvalues; 
 	private ArrayList<SensorValue> averageValues; 
 	public SensorValue val;
 	private ColorPattern colorPattern;
 	int colorNum = 0;
+	
+	private SpheroManager spheroManager;
 
 	public PatternMatcher() {
+		spheroManager = new SpheroManager();
 		sensorvalues = new ArrayList<SensorValue>();
 		averageValues = new ArrayList<SensorValue>();
 		colorPattern = null;
@@ -37,14 +41,20 @@ public class PatternMatcher {
 		if(sensorvalues.size() > BUFFER_SIZE){
 			sensorvalues.remove(0);
 		}
+		
+		
 		// Get the average of the buffer
 		getAverage();
 		
-		// Add the average to the buffer average
-		averageValues.add(val);
-		if (averageValues.size() > BUFFER_SIZE) {
-			averageValues.remove(0);
+		if (val.attention > ATTENTION_THRESHOLD) {
+			spheroManager.moveForward();
 		}
+//		
+//		// Add the average to the buffer average
+//		averageValues.add(val);
+//		if (averageValues.size() > BUFFER_SIZE) {
+//			averageValues.remove(0);
+//		}
 	}
 	
 	public void getAverage(){

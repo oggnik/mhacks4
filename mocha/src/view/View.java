@@ -35,7 +35,7 @@ public class View {
 	public View() {
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		calibrate = true;
+		calibrate = false;
 		running = false;
 		
 		JPanel content = new JPanel();
@@ -54,7 +54,7 @@ public class View {
 				running = false;
 			}
 		});
-		buttonPanel.add(calibrateButton);
+		//buttonPanel.add(calibrateButton);
 		
 		JButton startButton = new JButton("Start");
 		startButton.addActionListener(new ActionListener() {

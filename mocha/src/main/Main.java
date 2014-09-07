@@ -18,8 +18,8 @@ public class Main {
 		// Insert global logic here
 		View view = new View();
 		PatternMatcher patternMatcher = new PatternMatcher();
-		SpheroManager spheroManager = new SpheroManager();
-		Calibrator calibrator = new Calibrator(view, patternMatcher);
+//		SpheroManager spheroManager = new SpheroManager();
+//		Calibrator calibrator = new Calibrator(view, patternMatcher);
 		
 		boolean startCalibration = false;
 		while (true) {
@@ -96,9 +96,9 @@ public class Main {
 				// Update the view
 				view.update(sensorValue);
 				
-				if (startCalibration && view.getCalibrate()) {
-					calibrator.calibrate(sensorValue);
-				}
+//				if (startCalibration && view.getCalibrate()) {
+//					calibrator.calibrate(sensorValue);
+//				}
 				
 				// Update the pattern matcher if it should be running
 				if (!view.getCalibrate() && view.getRunning()) {
@@ -107,9 +107,9 @@ public class Main {
 			}
 			
 			// Determine the move to make
-			if (!view.getCalibrate() && view.getRunning()) {
-				determineMove(patternMatcher, spheroManager);
-			}
+//			if (!view.getCalibrate() && view.getRunning()) {
+//				determineMove(patternMatcher, spheroManager);
+//			}
 			
 			
 			//System.out.println("Done reading");
@@ -141,7 +141,7 @@ public class Main {
 		} else if (match.color.equals("blue")) {
 			spheroManager.turnRight();
 		} else if (match.color.equals("red")) {
-			// Do squat
+			// Do nothing
 		}
 	}
 }
