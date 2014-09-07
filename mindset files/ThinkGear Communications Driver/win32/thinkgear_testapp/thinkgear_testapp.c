@@ -21,7 +21,11 @@ wait() {
     //printf( "Press the ENTER key...\n" );
     //fflush( stdout );
     //getc( stdin );
+		//printf("GAHHHHH\n");
+		//printf("%c\n",c);
+		//fflush(stdout);
 		state=fopen("state.txt","r");
+		fscanf(state,"%c",&c);
 	}
 	fclose(state);
 }
@@ -65,7 +69,7 @@ main( void ) {
     /* Print driver version number */
     dllVersion = TG_GetDriverVersion();
     printf( "ThinkGear DLL version: %d\n", dllVersion );
-    fwrite("0",sizeof(char),1,bufferState);
+	fwrite("1",sizeof(char),1,bufferState);
 	fclose(bufferState);
     /* Get a connection ID handle to ThinkGear */
     connectionId = TG_GetNewConnectionId();
@@ -126,7 +130,8 @@ main( void ) {
 		theta=fopen("theta.txt","w+");
 		gamma1=fopen("gamma1.txt","w+");
 		gamma2=fopen("gamma2.txt","w+");
-    while(i<50000){// difftime(time(NULL), startTime) < secondsToRun ) {
+		
+    while(i<50){// difftime(time(NULL), startTime) < secondsToRun ) {
 		
         /* Read all currently available Packets, one at a time... */
         do {
@@ -143,15 +148,33 @@ main( void ) {
                     /* Get the current time as a string */
                     currTime = time( NULL );
         			currTimeStr = ctime( &currTime );
-					fprintf(raw,FORMAT,TG_GetValue(connectionId,TG_DATA_RAW));
-					fprintf(alpha1,"%d\n",(int)TG_GetValue(connectionId,TG_DATA_ALPHA1));
-					fprintf(alpha2,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_ALPHA2));
-					fprintf(beta1,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_BETA1));
-					fprintf(beta2,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_BETA2));
-					fprintf(delta,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_DELTA));
-					fprintf(gamma1,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_GAMMA1));
-					fprintf(gamma2,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_GAMMA2));
-					fprintf(theta,FORMAT,TG_GetValue(connectionId,TG_DATA_THETA));
+					//int check;
+					//check= (int)TG_GetValue(connectionId,TG_DATA_POOR_SIGNAL);
+					if(TG_GetValue(connectionId,TG_DATA_POOR_SIGNAL)> 90)
+					{
+						printf("%d\n",(int)TG_GetValue(connectionId,TG_DATA_POOR_SIGNAL));
+						fprintf(raw,FORMAT,0);
+						fprintf(alpha1,FORMAT,0);
+						fprintf(alpha2,FORMAT,0);
+						fprintf(beta1,FORMAT,0);
+						fprintf(beta2,FORMAT,0);
+						fprintf(delta,FORMAT,0);
+						fprintf(gamma1,FORMAT,0);
+						fprintf(gamma2,FORMAT,0);
+						fprintf(theta,FORMAT,0);
+					}
+					else
+					{
+						fprintf(raw,FORMAT,TG_GetValue(connectionId,TG_DATA_RAW));
+						fprintf(alpha1,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_ALPHA1));
+						fprintf(alpha2,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_ALPHA2));
+						fprintf(beta1,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_BETA1));
+						fprintf(beta2,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_BETA2));
+						fprintf(delta,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_DELTA));
+						fprintf(gamma1,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_GAMMA1));
+						fprintf(gamma2,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_GAMMA2));
+						fprintf(theta,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_THETA));
+					}
 					//printf(stdout,FORMAT,TG_GetValue(connectionId,TG_DATA_THETA));
                     /* Get and print out the new raw value */
                     //fprintf( stdout, "%s: raw: %d\n", currTimeStr,
@@ -173,7 +196,15 @@ main( void ) {
 	fclose(theta);
 	fclose(gamma1);
 	fclose(gamma2);
+	bufferState=fopen("state.txt","w");
+	fwrite("0",sizeof(char),1,bufferState);
+	fclose(bufferState);
 	wait();
+	//printf("check\n");
+	//fflush(stdout);
+	/*bufferState=fopen("state.txt","w+");
+	fprintf(bufferState,"%c","0");
+	fclose(bufferState);*/
 	}
     /* Clean up */
     TG_FreeConnection( connectionId );
