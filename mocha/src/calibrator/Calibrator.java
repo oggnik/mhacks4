@@ -34,7 +34,7 @@ public class Calibrator {
 	
 	public void calibrate(SensorValue val) {
 		
-		if (val.attention < 55) {
+		if (val.attention < 40) {
 			return;
 		}
 		sensorValues.add(val);

@@ -92,7 +92,7 @@ public class PatternMatcher {
 	public Pattern findMatch() {
 		double totalAttention = 0;
 		HashMap<Pattern, Integer> map = new HashMap<Pattern, Integer>();
-		System.out.println("sensorvaluesSize: " + sensorvalues.size());
+		//System.out.println("sensorvaluesSize: " + sensorvalues.size());
 		for (SensorValue val : sensorvalues) {
 			totalAttention += val.attention;
 			Pattern matchPattern = findMatch(val);
@@ -107,15 +107,15 @@ public class PatternMatcher {
 		Pattern maxMatchingPattern = null;
 		int maxMatches = 0;
 		
-		System.out.println(map.entrySet().size());
+		//System.out.println(map.entrySet().size());
 		for (Map.Entry<Pattern, Integer> entry : map.entrySet()) {
-			System.out.println(entry.getValue());
+			//System.out.println(entry.getValue());
 			if (entry.getValue() > maxMatches) {
 				maxMatchingPattern = entry.getKey();
 				maxMatches = entry.getValue();
 			}
 		}
-		if (maxMatches > BUFFER_SIZE / 2  && avgAttention > 55) {
+		if (maxMatches > BUFFER_SIZE / 2  && avgAttention > 40) {
 			System.out.println("Num matches: " + maxMatches);
 			return maxMatchingPattern;
 		}
