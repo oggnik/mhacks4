@@ -57,6 +57,9 @@ public class Main {
 			File thetaFile = new File("../new/app/app/theta.txt");
 			Scanner thetaIn = new Scanner(thetaFile);
 			
+			File attentionFile = new File("../new/app/app/attention.txt");
+			Scanner attentionIn = new Scanner(attentionFile);
+			
 			while (alpha1In.hasNextDouble()) {
 				/*
 				 * Call ReadPacket to get a new packet
@@ -75,7 +78,8 @@ public class Main {
 				sensorValue.gamma2 = gamma2In.nextDouble();
 				sensorValue.theta = thetaIn.nextDouble();
 				
-//				sensorValue.attention = alpha1In.nextDouble();
+				sensorValue.attention = attentionIn.nextDouble();
+				
 //				sensorValue.battery = alpha1In.nextDouble();
 //				sensorValue.meditation = alpha1In.nextDouble();
 //				sensorValue.poorSignal = alpha1In.nextDouble();

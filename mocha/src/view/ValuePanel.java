@@ -18,6 +18,9 @@ public class ValuePanel extends JPanel {
 	private JLabel gamma1Label;
 	private JLabel gamma2Label;
 	private JLabel thetaLabel;
+	
+	private JLabel attentionLabel;
+	
 	public ValuePanel() {
 		setPreferredSize(new Dimension(200, GraphPanel.GRAPH_HEIGHT));
 		setBackground(Color.BLACK);
@@ -30,6 +33,7 @@ public class ValuePanel extends JPanel {
 		gamma1Label = new JLabel("");
 		gamma2Label = new JLabel("");
 		thetaLabel = new JLabel("");
+		attentionLabel = new JLabel("");
 		alpha1Label.setForeground(View.ALPHA1_COLOR);
 		alpha2Label.setForeground(View.ALPHA2_COLOR);
 		beta1Label.setForeground(View.BETA1_COLOR);
@@ -38,6 +42,7 @@ public class ValuePanel extends JPanel {
 		gamma1Label.setForeground(View.GAMMA1_COLOR);
 		gamma2Label.setForeground(View.GAMMA2_COLOR);
 		thetaLabel.setForeground(View.THETA_COLOR);
+		attentionLabel.setForeground(Color.WHITE);
 		add(alpha1Label);
 		add(alpha2Label);
 		add(beta1Label);
@@ -46,6 +51,7 @@ public class ValuePanel extends JPanel {
 		add(gamma1Label);
 		add(gamma2Label);
 		add(thetaLabel);
+		add(attentionLabel);
 	}
 	
 	public void updateValues(SensorValue value) {
@@ -57,5 +63,6 @@ public class ValuePanel extends JPanel {
 		gamma1Label.setText(String.format("Gamma 1: %.3f", value.gamma1));
 		gamma2Label.setText(String.format("Gamma 2: %.3f", value.gamma2));
 		thetaLabel.setText(String.format("Theta: %.3f", value.theta));
+		attentionLabel.setText(String.format("Attention: %.3f", value.attention));
 	}
 }
