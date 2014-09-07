@@ -4,6 +4,7 @@ import model.SensorValue;
 public class PatternMain {
 	public static void main(String[] args){
 		PatternMatcher pm = new PatternMatcher();
+		for(int i = 0; i < 50; i++){
 		SensorValue sv = new SensorValue();
 		sv.alpha1 = 0.17;
 		sv.alpha2=0.27;
@@ -14,7 +15,9 @@ public class PatternMain {
 		sv.delta = 0.67;
 		sv.theta = 0.77;
 		pm.update(sv);
-		System.out.println(pm.colorPattern.patternArray.size());
+		}
+		pm.getAverage();
+		System.out.println(pm.sensorvalues.size());
 
 		System.out.println(pm.findMatch(pm));
 	}

@@ -33,7 +33,7 @@ public class PatternMatcher {
 		}
 	}
 	
-	public SensorValue getAverage(){
+	public void getAverage(){
 		double alpha1ave = 0;
 		double alpha2ave = 0;
 		double beta1ave = 0;
@@ -60,7 +60,6 @@ public class PatternMatcher {
 		average.gamma2 = gamma2ave /BUFFER_SIZE;
 		average.delta = deltaave /BUFFER_SIZE;
 		average.theta = thetaave /BUFFER_SIZE;
-		return average;
 	}
 	
 	
@@ -70,7 +69,7 @@ public class PatternMatcher {
 	 * @param sensorValue
 	 */
 	public String findMatch(PatternMatcher patternMatcher){
-		for(int i = 0; i < sensorvalues.size(); i++){
+		for(int i = 0; i < colorPattern.patternArray.size(); i++){
 			if(patternMatcher.matchColor((Pattern)colorPattern.patternArray.get(i)))
 				return "Matched color is found at "+i;
 		}
