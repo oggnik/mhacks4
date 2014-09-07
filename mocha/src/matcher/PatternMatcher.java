@@ -120,7 +120,7 @@ public class PatternMatcher {
 	 */
 	public Pattern findMatch(SensorValue val) {
 		Pattern bestPattern = colorPattern.patternArray.get(0);
-		double min = 0;
+		double min = Double.MAX_VALUE;
 		for (int i = 0; i < colorPattern.patternArray.size(); i++) {
 			double match = matchColor(val, colorPattern.patternArray.get(i));
 			if (match < min) {
