@@ -120,11 +120,11 @@ public class PatternMatcher {
 	 */
 	public Pattern findMatch(SensorValue val) {
 		Pattern bestPattern = colorPattern.patternArray.get(0);
-		double max = 0;
+		double min = 0;
 		for (int i = 0; i < colorPattern.patternArray.size(); i++) {
 			double match = matchColor(val, colorPattern.patternArray.get(i));
-			if (match > max) {
-				max = match;
+			if (match < min) {
+				min = match;
 				bestPattern = colorPattern.patternArray.get(i);
 			}
 		}
@@ -138,24 +138,17 @@ public class PatternMatcher {
 	 * @return
 	 */
 	public double matchColor (SensorValue val, Pattern pattern){
-		int matches = 0;
-		if(val.alpha1 > pattern.loweralpha1 && val.alpha1 < pattern.higheralpha1)
-			matches++;
-		if(val.alpha2 > pattern.loweralpha2 && val.alpha2 < pattern.higheralpha2)
-			matches++;
-		if(val.beta1 > pattern.lowerbeta1 && val.beta1 < pattern.higherbeta1)
-			matches++;
-		if(val.beta2 > pattern.lowerbeta2 && val.beta2 < pattern.higherbeta2)
-			matches++;
-		if(val.gamma1 > pattern.lowergamma1 && val.gamma1 < pattern.highergamma1)
-			matches++;
-		if(val.gamma2 > pattern.lowergamma2 && val.gamma2 < pattern.highergamma2)
-			matches++;
-		if(val.theta > pattern.lowertheta && val.theta < pattern.highertheta)
-			matches++;
-		if(val.delta > pattern.lowerdelta && val.alpha1 < pattern.higherdelta)
-			matches++;
-		return matches / 8.0;
+		double match = 0;
+		match += Math.pow(pattern.sensorValue.alpha1 - val.alpha1, 2);
+		match += Math.pow(pattern.sensorValue.alpha2 - val.alpha2, 2);
+		match += Math.pow(pattern.sensorValue.beta1 - val.beta1, 2);
+		match += Math.pow(pattern.sensorValue.beta2 - val.beta2, 2);
+		match += Math.pow(pattern.sensorValue.delta - val.delta, 2);
+		match += Math.pow(pattern.sensorValue.gamma1 - val.gamma1, 2);
+		match += Math.pow(pattern.sensorValue.gamma2 - val.gamma2, 2);
+		match += Math.pow(pattern.sensorValue.theta - val.theta, 2);
+		
+		return match;
 	}
 	
 	public void setColorPattern(ColorPattern c) {

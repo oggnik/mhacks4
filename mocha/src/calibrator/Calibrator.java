@@ -12,14 +12,18 @@ import view.View;
 
 public class Calibrator {
 	private ArrayList<Pattern> patterns;
+	private ArrayList<SensorValue> sensorValues;
 	private int numVals = 0;
 	private int colorIndex = 0;
 	private View view;
 	private PatternMatcher patternMatcher;
 	
+	public final static int BUF_SIZE = 5000;
+	
 	public Calibrator(View view, PatternMatcher patternMatcher) {
 		this.view = view;
 		this.patternMatcher = patternMatcher;
+		sensorValues = new ArrayList<SensorValue>();
 		patterns = new ArrayList<Pattern>();
 		patterns.add(new Pattern("yellow"));
 		patterns.add(new Pattern("green"));
@@ -29,60 +33,18 @@ public class Calibrator {
 	}
 	
 	public void calibrate(SensorValue val) {
-		Pattern currentPattern = patterns.get(colorIndex);
-		// Oh dear
-		if (val.alpha1 < currentPattern.loweralpha1) {
-			currentPattern.loweralpha1 = val.alpha1;
-		}
-		if (val.alpha1 > currentPattern.higheralpha1) {
-			currentPattern.higheralpha1 = val.alpha1;
-		}
-		if (val.alpha2 < currentPattern.loweralpha2) {
-			currentPattern.loweralpha2 = val.alpha2;
-		}
-		if (val.alpha2 > currentPattern.higheralpha2) {
-			currentPattern.higheralpha2 = val.alpha2;
-		}
-		if (val.beta1 < currentPattern.lowerbeta1) {
-			currentPattern.lowerbeta1 = val.beta1;
-		}
-		if (val.beta1 > currentPattern.lowerbeta1) {
-			currentPattern.lowerbeta1 = val.beta1;
-		}
-		if (val.beta2 < currentPattern.lowerbeta2) {
-			currentPattern.lowerbeta2 = val.beta2;
-		}
-		if (val.beta2 > currentPattern.lowerbeta2) {
-			currentPattern.lowerbeta2 = val.beta2;
-		}
-		if (val.delta < currentPattern.lowerdelta) {
-			currentPattern.lowerdelta = val.delta;
-		}
-		if (val.delta > currentPattern.higherdelta) {
-			currentPattern.higherdelta = val.delta;
-		}
-		if (val.gamma1 < currentPattern.lowergamma1) {
-			currentPattern.lowergamma1 = val.gamma1;
-		}
-		if (val.gamma1 > currentPattern.highergamma1) {
-			currentPattern.highergamma1 = val.gamma1;
-		}
-		if (val.gamma2 < currentPattern.lowergamma2) {
-			currentPattern.lowergamma2 = val.gamma2;
-		}
-		if (val.gamma2 > currentPattern.highergamma2) {
-			currentPattern.highergamma2 = val.gamma2;
-		}
-		if (val.theta < currentPattern.lowertheta) {
-			currentPattern.lowertheta = val.theta;
-		}
-		if (val.theta > currentPattern.highertheta) {
-			currentPattern.highertheta = val.theta;
-		}
 		
+		sensorValues.add(val);
+		if (sensorValues.size() > BUF_SIZE) {
+			sensorValues.remove(0);
+		}
 		numVals++;
 		
-		if (numVals > 5000) {
+		if (numVals > BUF_SIZE) {
+			Pattern currentPattern = patterns.get(colorIndex);
+			SensorValue average = getAverage();
+			currentPattern.sensorValue = average;
+			
 			colorIndex++;
 			numVals = 0;
 			if (colorIndex < patterns.size()) {
@@ -95,6 +57,38 @@ public class Calibrator {
 			patternMatcher.setColorPattern(new ColorPattern(patterns));
 			JOptionPane.showMessageDialog(null, "Calibration complete.");
 		}
+	}
+	
+	private SensorValue getAverage() {
+		SensorValue val = new SensorValue();
+		double alpha1ave = 0;
+		double alpha2ave = 0;
+		double beta1ave = 0;
+		double beta2ave = 0;
+		double gamma1ave = 0;
+		double gamma2ave = 0;
+		double deltaave = 0;
+		double thetaave = 0;
+		for(int i =0; i < sensorValues.size(); i++){
+			alpha1ave += sensorValues.get(i).alpha1;
+			alpha2ave += sensorValues.get(i).alpha2;
+			beta1ave += sensorValues.get(i).beta1;
+			beta2ave += sensorValues.get(i).beta2;
+			gamma1ave += sensorValues.get(i).gamma1;
+			gamma2ave += sensorValues.get(i).gamma2;
+			deltaave += sensorValues.get(i).delta;
+			thetaave += sensorValues.get(i).theta;
+		}
+		val.alpha1 = alpha1ave / sensorValues.size();
+		val.alpha2 = alpha2ave / sensorValues.size();
+		val.beta1 = beta1ave / sensorValues.size();
+		val.beta2 = beta2ave / sensorValues.size();
+		val.gamma1 = gamma1ave / sensorValues.size();
+		val.gamma2 = gamma2ave / sensorValues.size();
+		val.delta = deltaave / sensorValues.size();
+		val.theta = thetaave / sensorValues.size();
+		
+		return val;
 	}
 	
 	private void displayPrompt() {
