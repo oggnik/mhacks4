@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.SensorValue;
-
+import matcher.*;
 /**
  * The Display
  *
@@ -30,6 +30,7 @@ public class View {
 	private ValuePanel valuePanel;
 	private boolean calibrate;
 	private boolean running;
+	private PatternMatcher patternPatcher;
 	
 	public View() {
 		frame = new JFrame();
@@ -92,18 +93,22 @@ public class View {
 	 * The view updates with the new values.
 	 * @param sensorValue A new SensorValue
 	 */
-	public void update(SensorValue sensorValue) {
+	public void update(SensorValue sensorValue, PatternMatcher pm) {
 		graphPanel.updateValues(sensorValue);
 		valuePanel.updateValues(sensorValue);
-//		System.out.println("alpha1: " + sensorValue.alpha1);
-//		System.out.println("alpha2: " + sensorValue.alpha2);
-//		System.out.println("beta1: " + sensorValue.beta1);
-//		System.out.println("beta2: " + sensorValue.beta2);
-//		System.out.println("delta: " + sensorValue.delta);
-//		System.out.println("gamma1: " + sensorValue.gamma1);
-//		System.out.println("gamma1: " + sensorValue.gamma2);
-//		System.out.println("theta: " + sensorValue.theta);
-//		System.out.println("-----------------\n");
+		/**System.out.println("alpha1: " + sensorValue.alpha1);
+		System.out.println("alpha2: " + sensorValue.alpha2);
+		System.out.println("beta1: " + sensorValue.beta1);
+		System.out.println("beta2: " + sensorValue.beta2);
+		System.out.println("delta: " + sensorValue.delta);
+		System.out.println("gamma1: " + sensorValue.gamma1);
+		System.out.println("gamma1: " + sensorValue.gamma2);
+		System.out.println("theta: " + sensorValue.theta);**/
+		System.out.println("alpha1: "+pm.average.alpha1+"   alpha2:"+pm.average.alpha2);
+		System.out.println("beta1: "+pm.average.beta1+"   beta2:"+pm.average.beta2);
+		System.out.println("gamma1: " +pm.average.gamma1+"  gamma2: "+ pm.average.gamma2);
+		System.out.println("delta: "+ pm.average.delta+"  theta: "+pm.average.theta);
+		System.out.println("-----------------\n");
 	}
 	
 	/**

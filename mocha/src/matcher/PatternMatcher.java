@@ -10,7 +10,7 @@ import sphero.SpheroManager;
  *
  */
 public class PatternMatcher {
-	public static final int BUFFER_SIZE = 50;
+	public static final int BUFFER_SIZE = 500;
 	ArrayList<SensorValue> sensorvalues; 
 	public SensorValue average;
 	public ColorPattern colorPattern;
@@ -63,6 +63,10 @@ public class PatternMatcher {
 		average.gamma2 = gamma2ave /BUFFER_SIZE;
 		average.delta = deltaave /BUFFER_SIZE;
 		average.theta = thetaave /BUFFER_SIZE;
+		/*System.out.println("alpha1: "+average.alpha1+"   alpha2:"+average.alpha2);
+		System.out.println("beta1: "+average.beta1+"   beta2:"+average.beta2);
+		System.out.println("gamma1: " +average.gamma1+"  gamma2: "+ average.gamma2);
+		System.out.println("delta: "+ average.delta+"  theta: "+average.theta);*/
 	}
 	
 	

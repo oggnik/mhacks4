@@ -70,7 +70,9 @@ public class Main {
 				SensorValue sensorValue = new SensorValue();
 				
 				sensorValue.alpha1 = alpha1In.nextDouble();
+				patternMatcher.average.alpha1 = sensorValue.alpha1;
 				sensorValue.alpha2 = alpha2In.nextDouble();
+				patternMatcher.average.alpha2 = sensorValue.alpha2;
 				sensorValue.beta1 = beta1In.nextDouble();
 				sensorValue.beta2 = beta2In.nextDouble();
 				sensorValue.delta = deltaIn.nextDouble();
@@ -86,7 +88,7 @@ public class Main {
 //				sensorValue.raw = alpha1In.nextDouble();
 				
 				// Update the view
-				view.update(sensorValue);
+				view.update(sensorValue, patternMatcher);
 				
 				// Update the pattern matcher if it should be running
 				if (view.getRunning()) {

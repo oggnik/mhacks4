@@ -176,7 +176,7 @@ main( void ) {
 						fprintf(gamma1,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_GAMMA1));
 						fprintf(gamma2,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_GAMMA2));
 						fprintf(theta,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_THETA));
-						fprintf(theta,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_ATTENTION));
+						fprintf(attention,FORMAT,(int)TG_GetValue(connectionId,TG_DATA_ATTENTION));
 					}
 					//printf(stdout,FORMAT,TG_GetValue(connectionId,TG_DATA_THETA));
                     /* Get and print out the new raw value */
