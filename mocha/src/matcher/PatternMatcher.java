@@ -56,6 +56,7 @@ public class PatternMatcher {
 		double gamma2ave = 0;
 		double deltaave = 0;
 		double thetaave = 0;
+		double attentionave = 0;
 		for(int i =0; i < sensorvalues.size(); i++){
 			alpha1ave += sensorvalues.get(i).alpha1;
 			alpha2ave += sensorvalues.get(i).alpha2;
@@ -65,6 +66,7 @@ public class PatternMatcher {
 			gamma2ave += sensorvalues.get(i).gamma2;
 			deltaave += sensorvalues.get(i).delta;
 			thetaave += sensorvalues.get(i).theta;
+			attentionave += sensorvalues.get(i).attention;
 		}
 		val.alpha1 = alpha1ave /BUFFER_SIZE;
 		val.alpha2 = alpha2ave /BUFFER_SIZE;
@@ -74,6 +76,7 @@ public class PatternMatcher {
 		val.gamma2 = gamma2ave /BUFFER_SIZE;
 		val.delta = deltaave /BUFFER_SIZE;
 		val.theta = thetaave /BUFFER_SIZE;
+		val.attention = attentionave / BUFFER_SIZE;
 		/*System.out.println("alpha1: "+average.alpha1+"   alpha2:"+average.alpha2);
 		System.out.println("beta1: "+average.beta1+"   beta2:"+average.beta2);
 		System.out.println("gamma1: " +average.gamma1+"  gamma2: "+ average.gamma2);
@@ -87,8 +90,10 @@ public class PatternMatcher {
 	 * @param sensorValue
 	 */
 	public Pattern findMatch() {
+		double totalAttention = 0;
 		HashMap<Pattern, Integer> map = new HashMap<Pattern, Integer>();
 		for (SensorValue val : averageValues) {
+			totalAttention += val.attention;
 			Pattern matchPattern = findMatch(val);
 			Integer num = map.get(matchPattern);
 			if (num == null) {
@@ -96,6 +101,7 @@ public class PatternMatcher {
 			}
 			map.put(matchPattern, num + 1);
 		}
+		double avgAttention = totalAttention / averageValues.size();
 		
 		Pattern maxMatchingPattern = null;
 		int maxMatches = 0;
@@ -106,7 +112,7 @@ public class PatternMatcher {
 				maxMatches = entry.getValue();
 			}
 		}
-		if (maxMatches > BUFFER_SIZE / 2) {
+		if (maxMatches > BUFFER_SIZE / 2  && avgAttention > 55) {
 			System.out.println("Num matches: " + maxMatches);
 			return maxMatchingPattern;
 		}

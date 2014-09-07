@@ -34,6 +34,9 @@ public class Calibrator {
 	
 	public void calibrate(SensorValue val) {
 		
+		if (val.attention < 40) {
+			return;
+		}
 		sensorValues.add(val);
 		if (sensorValues.size() > BUF_SIZE) {
 			sensorValues.remove(0);
