@@ -45,7 +45,7 @@ public class GraphPanel extends JPanel {
 		
 		SensorValue last = values.get(0);
 		for (int i = 1; i < values.size(); i++) {
-			SensorValue value = getAverage(values, i, 10);
+			SensorValue value = getAverage(values, i, 100);
 			int x = (int) (i * xScale);
 			int lastX = (int) ((i - 1) * xScale);
 			
