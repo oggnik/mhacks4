@@ -95,15 +95,15 @@ public class View {
 	public void update(SensorValue sensorValue) {
 		graphPanel.updateValues(sensorValue);
 		valuePanel.updateValues(sensorValue);
-		System.out.println("alpha1: " + sensorValue.alpha1);
-		System.out.println("alpha2: " + sensorValue.alpha2);
-		System.out.println("beta1: " + sensorValue.beta1);
-		System.out.println("beta2: " + sensorValue.beta2);
-		System.out.println("delta: " + sensorValue.delta);
-		System.out.println("gamma1: " + sensorValue.gamma1);
-		System.out.println("gamma1: " + sensorValue.gamma2);
-		System.out.println("theta: " + sensorValue.theta);
-		System.out.println("-----------------\n");
+//		System.out.println("alpha1: " + sensorValue.alpha1);
+//		System.out.println("alpha2: " + sensorValue.alpha2);
+//		System.out.println("beta1: " + sensorValue.beta1);
+//		System.out.println("beta2: " + sensorValue.beta2);
+//		System.out.println("delta: " + sensorValue.delta);
+//		System.out.println("gamma1: " + sensorValue.gamma1);
+//		System.out.println("gamma1: " + sensorValue.gamma2);
+//		System.out.println("theta: " + sensorValue.theta);
+//		System.out.println("-----------------\n");
 	}
 	
 	/**

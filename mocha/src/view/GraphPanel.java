@@ -135,6 +135,9 @@ public class GraphPanel extends JPanel {
 			}
 			
 			SensorValue val = (SensorValue) values.get(i);
+			if (val == null) {
+				continue;
+			}
 			average.alpha1 += val.alpha1;
 			average.alpha2 += val.alpha2;
 			average.beta1 += val.beta1;
