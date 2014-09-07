@@ -45,7 +45,7 @@ public class GraphPanel extends JPanel {
 		
 		SensorValue last = values.get(0);
 		for (int i = 1; i < values.size(); i++) {
-			SensorValue value = values.get(i);
+			SensorValue value = getAverage(values, i, 10);
 			int x = (int) (i * xScale);
 			int lastX = (int) ((i - 1) * xScale);
 			
@@ -115,4 +115,39 @@ public class GraphPanel extends JPanel {
 		return max;
 	}
 	
+	private SensorValue getAverage(ArrayList<SensorValue> values, int index, int radius) {
+		SensorValue average = new SensorValue();
+		int numVals = 0;
+		for (int i = index - radius; i <= index + radius; i++) {
+			if (i < 0) {
+				continue;
+			}
+			if (i >= values.size()) {
+				break;
+			}
+			
+			SensorValue val = (SensorValue) values.get(i);
+			average.alpha1 += val.alpha1;
+			average.alpha2 += val.alpha2;
+			average.beta1 += val.beta1;
+			average.beta2 += val.beta2;
+			average.delta += val.delta;
+			average.gamma1 += val.gamma1;
+			average.gamma2 += val.gamma2;
+			average.theta += val.theta;
+			
+			numVals++;
+		}
+		
+		average.alpha1 /= numVals;
+		average.alpha2 /= numVals;
+		average.beta1 /= numVals;
+		average.beta2 /= numVals;
+		average.delta /= numVals;
+		average.gamma1 /= numVals;
+		average.gamma2 /= numVals;
+		average.theta /= numVals;
+		
+		return average;
+	}
 }
